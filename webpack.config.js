@@ -1,0 +1,59 @@
+'use strict';
+
+var webpack = require('webpack');
+
+var definitions = {
+  DEBUG: process.env.DEBUG === 'true',
+  FULL: process.env.FULL === 'true',
+  NATIVE: process.env.NATIVE === 'true',
+  PRISONER_EDITOR: process.env.PRISONER_EDITOR === 'true'
+};
+
+var config = {
+  target: 'web',
+  plugins: [
+    new webpack.DefinePlugin(definitions)
+  ],
+  resolveLoader: {
+    modulesDirectories: ['node_modules', 'tools']
+  },
+  module: {
+    loaders: [{
+      test: /index\.html$/,
+      loader: 'copy'
+    }, {
+      test: /\.js$/,
+      loader: 'babel'
+    }, {
+      test: /\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3|\.fnt|\.ogg|\.wav|\.txt$/,
+      loader: 'file'
+    }, {
+      test: /\.json$/,
+      loader: 'file!mapEntityIdGenerator'
+    }, {
+      test: /\.jpe?g$|\.gif$|\.png$/,
+      loader: 'file!image'
+    }, {
+      test: /phaser.js|phaser.min.js|dat.gui.min.js/,
+      loader: 'script'
+    }],
+  },
+  entry: {
+    game: './src/game.js'
+  },
+  output: {
+    path: './dist',
+    publicPath: '',
+    filename: 'game.js'
+  }
+};
+
+if (definitions.NATIVE) {
+  config.target = 'node-webkit';
+  // For some reason, setting the target to "node-webkit" made it lose the
+  // image loader. Setting the resolveLoader.moduleTemplates made it work
+  // again. ¯\_(ツ)_/¯
+  config.resolveLoader.moduleTemplates = ["*-webpack-loader", "*-web-loader", "*-loader", "*"];
+}
+
+module.exports = config;
