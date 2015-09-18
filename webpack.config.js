@@ -9,7 +9,7 @@ var definitions = {
   PRISONER_EDITOR: process.env.PRISONER_EDITOR === 'true'
 };
 
-var config = {
+module.exports = {
   target: 'web',
   plugins: [
     new webpack.DefinePlugin(definitions)
@@ -34,7 +34,7 @@ var config = {
       test: /\.jpe?g$|\.gif$|\.png$/,
       loader: 'file!image'
     }, {
-      test: /phaser.js|phaser.min.js|dat.gui.min.js/,
+      test: /phaser.js|phaser.min.js/,
       loader: 'script'
     }],
   },
@@ -47,13 +47,3 @@ var config = {
     filename: 'game.js'
   }
 };
-
-if (definitions.NATIVE) {
-  config.target = 'node-webkit';
-  // For some reason, setting the target to "node-webkit" made it lose the
-  // image loader. Setting the resolveLoader.moduleTemplates made it work
-  // again. ¯\_(ツ)_/¯
-  config.resolveLoader.moduleTemplates = ["*-webpack-loader", "*-web-loader", "*-loader", "*"];
-}
-
-module.exports = config;
