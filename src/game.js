@@ -6,8 +6,8 @@ var MainMenu = require('./states/mainMenu');
 var Main = require('./states/main');
 
 var game = window.game = new Phaser.Game({
-  width: 1280,
-  height: 960,
+  width: 640,
+  height: 480,
   renderer: Phaser.AUTO,
   state: new Boot(),
   transparent: false,
