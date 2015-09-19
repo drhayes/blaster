@@ -1,7 +1,6 @@
 // From https://www.shadertoy.com/view/lsXGWn
 precision lowp float;
-const float blurSize = 1.0/512.0;
-const float intensity = 0.35;
+const float blurSize = 1.0/128.0;
 varying vec2 vTextureCoord;
 varying vec4 vColor;
 uniform sampler2D uSampler;
@@ -9,8 +8,6 @@ uniform sampler2D uSampler;
 void main() {
    vec4 sum = vec4(0);
    vec2 texcoord = vTextureCoord;
-   int j;
-   int i;
 
    //thank you! http://www.gamerendering.com/2008/10/11/gaussian-blur-filter-shader/ for the
    //blur tutorial
