@@ -23,9 +23,9 @@ module.exports = {
       loader: 'copy'
     }, {
       test: /\.js$/,
-      loader: 'babel'
+      loader: 'transform/cacheable?brfs!babel'
     }, {
-      test: /\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3|\.fnt|\.ogg|\.wav|\.txt$/,
+      test: /\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3|\.fnt|\.ogg|\.wav|\.txt|\.frag$/,
       loader: 'file'
     }, {
       test: /\.json$/,
