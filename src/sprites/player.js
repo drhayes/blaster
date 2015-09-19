@@ -9,4 +9,8 @@ export default class Player extends Phaser.Sprite {
     this.glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
     this.filters = [this.glow];
   }
+
+  update() {
+    this.x += 1;
+  }
 };

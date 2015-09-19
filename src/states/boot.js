@@ -2,7 +2,7 @@
 
 export default class Boot extends Phaser.State {
   preload() {
-    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    // this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.scale.windowConstraints.bottom = 'visual';
     this.scale.parentIsWindow = true;
 
