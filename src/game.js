@@ -1,12 +1,5 @@
 'use strict';
 
-if (FULL) {
-  require('../vendor/phaser.min.js');
-} else {
-  require('../vendor/phaser.js');
-}
-require('../index.html');
-
 var Boot = require('./states/boot');
 var Preload = require('./states/preload');
 var MainMenu = require('./states/mainMenu');

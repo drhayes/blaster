@@ -6,8 +6,8 @@ export default class Boot extends Phaser.State {
     this.scale.windowConstraints.bottom = 'visual';
     this.scale.parentIsWindow = true;
 
-    this.game.load.image('loading-bg', require('../../media/images/loadingBarBG.png'));
-    this.game.load.image('loading-fg', require('../../media/images/loadingBarFG.png'));
+    this.game.load.image('loading-bg', 'media/images/loadingBarBG.png');
+    this.game.load.image('loading-fg', 'media/images/loadingBarFG.png');
   }
 
   create() {

@@ -4,9 +4,7 @@
   "description": "A game about shooting things.",
   "main": "index.html",
   "scripts": {
-    "start": "webpack-dev-server --content-base build/ -d --progress",
-    "build": "webpack --progress --colors -p",
-    "deploy": "rm dist/*.* && npm run build && divshot push"
+    "start": "wzrd src/game.js:game.js"
   },
   "repository": {
     "type": "git",
@@ -16,21 +14,12 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/drhayes/blaster",
   "devDependencies": {
-    "babel-core": "^5.8.23",
-    "babel-loader": "^5.3.2",
-    "bluebird": "^2.9.21",
+    "babelify": "^6.3.0",
     "brfs": "^1.4.1",
-    "copy-loader": "^0.1.2",
-    "file-loader": "^0.8.4",
-    "image-webpack-loader": "^1.6.1",
-    "imagemin": "^3.2.0",
-    "jshint": "^2.8.0",
-    "jshint-loader": "^0.8.3",
-    "node-libs-browser": "^0.5.2",
-    "pngjs": "^0.4.0",
-    "script-loader": "^0.6.1",
-    "transform-loader": "^0.2.3",
-    "webpack": "^1.9.10",
-    "webpack-dev-server": "^1.9.0"
+    "browserify": "^11.1.0",
+    "wzrd": "^1.3.1"
+  },
+  "browserify": {
+    "transform": ["babelify", "brfs"]
   }
 }

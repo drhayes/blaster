@@ -9,14 +9,10 @@ export default class Preload extends Phaser.State {
     this.bar.anchor.setTo(0.5, 0.5);
     this.game.load.setPreloadSprite(this.bar);
 
-    this.game.load.image('player', require('../../media/images/player.png'));
+    this.game.load.image('player', 'media/images/player.png');
   }
 
   create() {
-    if (FULL) {
-      this.game.state.start('mainMenu');
-    } else {
-      this.game.state.start('main', true, false);
-    }
+    this.game.state.start('main', true, false);
   }
 };
