@@ -6,7 +6,7 @@ import PlayerMove from '../behaviors/playerMove';
 
 export default class Player extends Phaser.Sprite {
   constructor(game, x, y) {
-    super(game, x, y, 'player');
+    super(game, x, y, 'player', 0);
     game.physics.arcade.enable(this);
     enableBehaviors(this);
 
