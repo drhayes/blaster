@@ -3,6 +3,7 @@
 var fs = require('fs');
 import enableBehaviors from '../behaviors/enableBehaviors';
 import PlayerMove from '../behaviors/playerMove';
+import PlayerShoot from '../behaviors/playerShoot';
 
 export default class Player extends Phaser.Sprite {
   constructor(game, x, y) {
@@ -11,6 +12,7 @@ export default class Player extends Phaser.Sprite {
     enableBehaviors(this);
 
     this.addBehavior(new PlayerMove());
+    this.addBehavior(new PlayerShoot());
     this.anchor.setTo(0.5);
     this.body.width = 30;
     this.body.height = 30;
