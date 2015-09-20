@@ -12,6 +12,7 @@ export default class Boot extends Phaser.State {
     this.game.load.image('loading-fg', 'media/images/loadingBarFG.png');
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    this.game.input.gamepad.start();
 
     let scanlines = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/scanlines.frag', 'utf8'));
     this.stage.filters = [scanlines];
