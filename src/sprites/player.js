@@ -5,6 +5,7 @@ export default class Player extends Phaser.Sprite {
     super(game, x, y, 'player');
 
     this.anchor.setTo(0.5);
+    this.tint = 0x4682b4;
     // this.angle = 1;
   }
 
