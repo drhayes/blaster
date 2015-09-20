@@ -4,7 +4,7 @@
   "description": "A game about shooting things.",
   "main": "index.html",
   "scripts": {
-    "start": "wzrd src/game.js:game.js"
+    "start": "wzrd src/game.js:game.js -p 8080"
   },
   "repository": {
     "type": "git",
