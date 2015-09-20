@@ -6,6 +6,7 @@ const MAX_VEL = 600;
 const DRAG = 1200;
 const MOVE_ACC = 2000;
 const THRESHOLD = 0.01;
+const ANGLE_RATIO = 0.05;
 
 export default class PlayerMove extends Behavior {
   constructor() {
@@ -26,6 +27,7 @@ export default class PlayerMove extends Behavior {
   }
 
   update(player) {
+    let body = player.body;
     let accelX = 0;
     let accelY = 0;
     if (this.up.isDown || this.pad.isDown(Phaser.Gamepad.XBOX360_DPAD_UP)) {
@@ -39,20 +41,24 @@ export default class PlayerMove extends Behavior {
       accelX = MOVE_ACC;
     }
 
+    // TODO: Don't let player switch velocities instantly using stick.
     if (this.pad.connected) {
       let leftStickX = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X);
       let leftStickY = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y);
       if (leftStickX < -THRESHOLD || leftStickX > THRESHOLD) {
-        player.body.velocity.x = MAX_VEL * leftStickX;
+        body.velocity.x = MAX_VEL * leftStickX;
         accelX = 0;
       }
       if (leftStickY < -THRESHOLD || leftStickY > THRESHOLD) {
-        player.body.velocity.y = MAX_VEL * leftStickY;
+        body.velocity.y = MAX_VEL * leftStickY;
         accelY = 0;
       }
     }
 
-    player.body.acceleration.x = accelX;
-    player.body.acceleration.y = accelY;
+    // TODO: Tween angle when switching velocities...
+    player.angle = ANGLE_RATIO * body.velocity.x;
+
+    body.acceleration.x = accelX;
+    body.acceleration.y = accelY;
   }
 };

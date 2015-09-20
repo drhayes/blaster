@@ -14,6 +14,7 @@ export default class Player extends Phaser.Sprite {
     this.anchor.setTo(0.5);
     this.body.width = 30;
     this.body.height = 30;
+    this.body.collideWorldBounds = true;
     this.tint = 0x4682b4;
 
     let glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
