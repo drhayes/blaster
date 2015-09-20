@@ -9,7 +9,7 @@ export default class Preload extends Phaser.State {
     this.bar.anchor.setTo(0.5, 0.5);
     this.game.load.setPreloadSprite(this.bar);
 
-    this.game.load.spritesheet('player', 'media/images/player.png', 64, 64);
+    this.game.load.spritesheet('player', 'media/images/player.png', 32, 32);
   }
 
   create() {

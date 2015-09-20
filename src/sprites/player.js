@@ -1,16 +1,26 @@
 'use strict';
 
+var fs = require('fs');
+import enableBehaviors from '../behaviors/enableBehaviors';
+import PlayerMove from '../behaviors/playerMove';
+
 export default class Player extends Phaser.Sprite {
   constructor(game, x, y) {
     super(game, x, y, 'player');
+    game.physics.arcade.enable(this);
+    enableBehaviors(this);
 
+    this.addBehavior(new PlayerMove());
     this.anchor.setTo(0.5);
+    this.body.width = 30;
+    this.body.height = 30;
     this.tint = 0x4682b4;
-    // this.angle = 1;
+
+    let glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
+    this.filters = [glow];
   }
 
   update() {
-    // this.angle += 1;
-    // this.x += 1;
+    this.behave('update');
   }
 };
