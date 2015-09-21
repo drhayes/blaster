@@ -19,6 +19,7 @@ export default class PlayerMove extends Behavior {
     this.player = player;
     player.body.maxVelocity.setTo(MAX_VEL);
     player.body.drag.setTo(DRAG);
+    // TODO: Configurable somehow?
     this.up = player.game.input.keyboard.addKey(Phaser.Keyboard.W);
     this.down = player.game.input.keyboard.addKey(Phaser.Keyboard.S);
     this.left = player.game.input.keyboard.addKey(Phaser.Keyboard.A);
