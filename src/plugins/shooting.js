@@ -11,16 +11,19 @@ export default class Shooting extends Phaser.Plugin {
   }
 
   init() {
-    this.pool = this.game.add.group(this.game.world, 'playerBullets');
-    this.pool.classType = Bullet;
-    this.pool.createMultiple(NUM_BULLETS);
+    this.pool = this.game.add.group();
+    for (let x = 0; x < NUM_BULLETS; x++) {
+      let bullet = new Bullet(this.game, 0, 0);
+      bullet.alive = bullet.exists = bullet.visible = false;
+      this.pool.add(bullet)
+    }
   }
 
   update() {
     this.game.physics.arcade.overlap(this.game.enemiesGroup, this.pool, this.onOverlap, null, this);
   }
 
-  onOverlap() {
-    console.log('????');
+  onOverlap(enemy, bullet) {
+    bullet.kill();
   }
 };

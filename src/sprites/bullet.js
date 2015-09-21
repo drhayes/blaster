@@ -25,10 +25,15 @@ export default class Bullet extends Phaser.Sprite {
   }
 
   fire(velX, velY) {
-    game.time.events.add(BULLET_LIFETIME_MS, () => {
+    this.killEvent = this.game.time.events.add(BULLET_LIFETIME_MS, () => {
       this.kill();
     });
     this.body.velocity.x = BULLET_MAIN_VELOCITY * velX;
     this.body.velocity.y = BULLET_MAIN_VELOCITY * velY;
+  }
+
+  kill() {
+    super.kill();
+    this.game.time.events.remove(this.killEvent);
   }
 };
