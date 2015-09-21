@@ -14,7 +14,7 @@ export default class Player extends Phaser.Sprite {
 
     this.addBehavior(new TiltMove());
     this.addBehavior(new PlayerMove());
-    this.addBehavior(new PlayerShoot());
+    this.addBehavior(new PlayerShoot(game.shooting.pool));
     this.anchor.setTo(0.5);
     this.body.width = 30;
     this.body.height = 30;

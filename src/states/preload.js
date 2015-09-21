@@ -1,5 +1,7 @@
 'use strict';
 
+import Shooting from '../plugins/shooting';
+
 export default class Preload extends Phaser.State {
   preload() {
     this.barBg = this.game.add.sprite(game.world.centerX, game.world.centerY, 'loading-bg');
@@ -15,6 +17,8 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
+    this.game.plugins.add(Shooting);
+
     this.game.state.start('main', true, false);
   }
 };

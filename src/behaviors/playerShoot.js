@@ -1,19 +1,17 @@
 'use strict';
 
 import Behavior from './behavior';
-import Bullet from '../sprites/bullet';
 
 const THRESHOLD = 0.001;
-const NUM_BULLETS = 50;
 const BULLET_WAVER_DEGREES = 5;
 const HALF_WAVER = BULLET_WAVER_DEGREES / 2;
 const SOUND_DELAY = 60;
 
 export default class PlayerShoot extends Behavior {
-  constructor() {
+  constructor(pool) {
     super()
     this.pad = null;
-    this.pool = null;
+    this.pool = pool;
     this.up = this.down = this.left = this.right = null;
     this.angleForShoot = new Phaser.Point(0, 0);
     this.shootSound = null;
@@ -28,14 +26,12 @@ export default class PlayerShoot extends Behavior {
     this.left = player.game.input.keyboard.addKey(Phaser.Keyboard.J);
     this.right = player.game.input.keyboard.addKey(Phaser.Keyboard.L);
     this.pad = player.game.input.gamepad.pad1;
-    this.pool = player.game.add.group(player.game.world, 'playerBullets');
-    this.pool.classType = Bullet;
-    this.pool.createMultiple(NUM_BULLETS);
     this.shootSound = player.game.add.audio('shoot');
   }
 
   update(player) {
     this.shootSoundDelay -= player.game.time.physicsElapsedMS;
+
     let shootX = 0;
     let shootY = 0;
     if (this.up.isDown) {
