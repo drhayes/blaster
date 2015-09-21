@@ -7,6 +7,7 @@ const THRESHOLD = 0.001;
 const NUM_BULLETS = 50;
 const BULLET_WAVER_DEGREES = 5;
 const HALF_WAVER = BULLET_WAVER_DEGREES / 2;
+const SOUND_DELAY = 60;
 
 export default class PlayerShoot extends Behavior {
   constructor() {
@@ -14,6 +15,8 @@ export default class PlayerShoot extends Behavior {
     this.pad = null;
     this.pool = null;
     this.angleForShoot = new Phaser.Point(0, 0);
+    this.shootSound = null;
+    this.shootSoundDelay = 0.
   }
 
   added(player) {
@@ -22,9 +25,11 @@ export default class PlayerShoot extends Behavior {
     this.pool = player.game.add.group(player.game.world, 'playerBullets');
     this.pool.classType = Bullet;
     this.pool.createMultiple(NUM_BULLETS);
+    this.shootSound = player.game.add.audio('shoot');
   }
 
   update(player) {
+    this.shootSoundDelay -= player.game.time.physicsElapsedMS;
     let shootX = 0;
     let shootY = 0;
     // TODO: Keyboard support!
@@ -49,6 +54,10 @@ export default class PlayerShoot extends Behavior {
         Phaser.Point.rotate(this.angleForShoot, 0, 0, Math.random() * BULLET_WAVER_DEGREES - HALF_WAVER, true);
         bullet.reset(player.x, player.y);
         bullet.fire(this.angleForShoot.x, this.angleForShoot.y);
+        if (this.shootSoundDelay <= 0) {
+          this.shootSound.play();
+          this.shootSoundDelay = SOUND_DELAY + Math.random() * 10;
+        }
       }
     }
   }

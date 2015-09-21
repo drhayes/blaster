@@ -10,6 +10,8 @@ export default class Preload extends Phaser.State {
     this.game.load.setPreloadSprite(this.bar);
 
     this.game.load.spritesheet('player', 'media/images/player.png', 32, 32);
+
+    this.game.load.audio('shoot', 'media/sounds/shoot.mp3');
   }
 
   create() {
