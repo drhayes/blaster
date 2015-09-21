@@ -4,7 +4,9 @@
   "description": "A game about shooting things.",
   "main": "index.html",
   "scripts": {
-    "start": "wzrd src/game.js:game.js -p 8080 -- -d"
+    "start": "wzrd src/game.js:game.js -p 8080 -- -d",
+    "predeploy": "rm -rf dist && mkdir -p dist/vendor",
+    "deploy": "cp index.html dist && cp vendor/phaser.min.js dist/vendor && browserify src/game.js -o dist/game.js && cp -R media dist/media && divshot push"
   },
   "repository": {
     "type": "git",
