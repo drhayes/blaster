@@ -3,6 +3,7 @@
 var fs = require('fs');
 
 const BULLET_LIFETIME_MS = 1000;
+const BULLET_MAIN_VELOCITY = 1000;
 
 export default class Bullet extends Phaser.Sprite {
   constructor(game, x, y) {
@@ -17,14 +18,17 @@ export default class Bullet extends Phaser.Sprite {
 
     let glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
     this.filters = [glow];
-
-    this.events.onRevived.add(() => {
-      game.time.events.add(BULLET_LIFETIME_MS, () => {
-        this.kill();
-      })
-    });
   }
 
   update() {
+    this.rotation = this.game.math.angleBetweenPoints(this.previousPosition, this);
+  }
+
+  fire(velX, velY) {
+    game.time.events.add(BULLET_LIFETIME_MS, () => {
+      this.kill();
+    });
+    this.body.velocity.x = BULLET_MAIN_VELOCITY * velX;
+    this.body.velocity.y = BULLET_MAIN_VELOCITY * velY;
   }
 };
