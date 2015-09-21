@@ -4,7 +4,7 @@ import Behavior from './behavior';
 
 const ANGLE_RATIO = 0.05;
 
-class TiltMove extends Behavior {
+export default class TiltMove extends Behavior {
   constructor() {
     super()
   }
