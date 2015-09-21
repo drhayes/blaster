@@ -3,16 +3,18 @@
 import Behavior from './behavior';
 import Bullet from '../sprites/bullet';
 
-const THRESHOLD = 0.01;
+const THRESHOLD = 0.001;
 const NUM_BULLETS = 50;
 const BULLET_MAIN_VELOCITY = 1000;
-const BULLET_CROSS_VELOCITY = 30;
+const BULLET_WAVER_DEGREES = 5;
+const HALF_WAVER = BULLET_WAVER_DEGREES / 2;
 
 export default class PlayerShoot extends Behavior {
   constructor() {
     super()
     this.pad = null;
     this.pool = null;
+    this.angleForShoot = new Phaser.Point(0, 0);
   }
 
   added(player) {
@@ -39,16 +41,20 @@ export default class PlayerShoot extends Behavior {
     }
 
     // TODO: Cooldown period!
-    if (shootX) {
+    if (shootX || shootY) {
       let bullet = this.pool.getFirstExists(false);
       if (bullet) {
         // Do both so that the onRevived event fires in the bullet so it'll set its
         // lifetime timer correctly.
+        // TODO: Put a fire method in bullet instead of this insanity.
         bullet.revive();
+        // Computer angle for shot.
+        this.angleForShoot.set(shootX, shootY);
+        Phaser.Point.normalize(this.angleForShoot, this.angleForShoot);
+        Phaser.Point.rotate(this.angleForShoot, 0, 0, Math.random() * BULLET_WAVER_DEGREES - HALF_WAVER, true);
         bullet.reset(player.x, player.y);
-        bullet.body.velocity.x = BULLET_MAIN_VELOCITY * (shootX < 0 ? -1 : 1);
-        bullet.body.velocity.y = player.game.rnd.integerInRange(-BULLET_CROSS_VELOCITY, BULLET_CROSS_VELOCITY);
-        bullet.angle = Math.tan(bullet.body.velocity.y / bullet.body.velocity.x);
+        bullet.body.velocity.x = BULLET_MAIN_VELOCITY * this.angleForShoot.x;
+        bullet.body.velocity.y = BULLET_MAIN_VELOCITY * this.angleForShoot.y;
       }
     }
   }
