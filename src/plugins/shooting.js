@@ -24,6 +24,7 @@ export default class Shooting extends Phaser.Plugin {
   }
 
   onOverlap(enemy, bullet) {
+    this.game.explosions.fire(bullet.x, bullet.y);
     bullet.kill();
   }
 };

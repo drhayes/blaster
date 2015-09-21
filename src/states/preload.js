@@ -1,6 +1,7 @@
 'use strict';
 
 import Shooting from '../plugins/shooting';
+import Explosions from '../plugins/explosions';
 
 export default class Preload extends Phaser.State {
   preload() {
@@ -18,6 +19,7 @@ export default class Preload extends Phaser.State {
 
   create() {
     this.game.plugins.add(Shooting);
+    this.game.plugins.add(Explosions);
 
     this.game.state.start('main', true, false);
   }

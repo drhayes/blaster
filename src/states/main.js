@@ -7,6 +7,7 @@ import Bullet from '../sprites/bullet';
 export default class Main extends Phaser.State {
   create() {
     this.game.shooting.init();
+    this.game.explosions.init();
 
     this.game.player = this.player = new Player(this.game, 200, 200);
     this.game.add.existing(this.player);
