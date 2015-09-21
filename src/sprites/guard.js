@@ -2,12 +2,15 @@
 
 var fs = require('fs');
 import enableBehaviors from '../behaviors/enableBehaviors';
+import TiltMove from '../behaviors/tiltMove';
 
 export default class Guard extends Phaser.Sprite {
   constructor(game, x, y) {
     super(game, x, y, 'player', 0);
     game.physics.arcade.enable(this);
     enableBehaviors(this);
+
+    this.addBehavior(new TiltMove());
 
     this.anchor.setTo(0.5);
     this.body.width = 30;

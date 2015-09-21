@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 import enableBehaviors from '../behaviors/enableBehaviors';
+import TiltMove from '../behaviors/tiltMove';
 import PlayerMove from '../behaviors/playerMove';
 import PlayerShoot from '../behaviors/playerShoot';
 
@@ -11,6 +12,7 @@ export default class Player extends Phaser.Sprite {
     game.physics.arcade.enable(this);
     enableBehaviors(this);
 
+    this.addBehavior(new TiltMove());
     this.addBehavior(new PlayerMove());
     this.addBehavior(new PlayerShoot());
     this.anchor.setTo(0.5);

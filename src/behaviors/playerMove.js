@@ -6,7 +6,6 @@ const MAX_VEL = 600;
 const DRAG = 1200;
 const MOVE_ACC = 2000;
 const THRESHOLD = 0.01;
-const ANGLE_RATIO = 0.05;
 
 export default class PlayerMove extends Behavior {
   constructor() {
@@ -55,9 +54,6 @@ export default class PlayerMove extends Behavior {
         accelY = 0;
       }
     }
-
-    // TODO: Tween angle when switching velocities...
-    player.angle = ANGLE_RATIO * body.velocity.x;
 
     body.acceleration.x = accelX;
     body.acceleration.y = accelY;
