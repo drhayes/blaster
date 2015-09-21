@@ -3,11 +3,14 @@
 import Bullet from '../sprites/bullet';
 
 const NUM_BULLETS = 50;
+const SOUND_DELAY = 60;
 
 export default class Shooting extends Phaser.Plugin {
   constructor(game, parent) {
     super(game, parent);
     game.shooting = this;
+    this.shootSound = game.add.audio('shoot');
+    this.shootSoundDelay = 0;
   }
 
   init() {
@@ -19,7 +22,20 @@ export default class Shooting extends Phaser.Plugin {
     }
   }
 
+  fire(sx, sy, vx, vy) {
+    let bullet = this.pool.getFirstExists(false);
+    if (bullet) {
+      bullet.reset(sx, sy);
+      bullet.fire(vx, vy);
+      if (this.shootSoundDelay <= 0) {
+        this.shootSound.play();
+        this.shootSoundDelay = SOUND_DELAY + Math.random() * 10;
+      }
+    }
+  }
+
   update() {
+    this.shootSoundDelay -= this.game.time.physicsElapsedMS;
     this.game.physics.arcade.overlap(this.game.enemiesGroup, this.pool, this.onOverlap, null, this);
   }
 

@@ -5,7 +5,6 @@ import Behavior from './behavior';
 const THRESHOLD = 0.001;
 const BULLET_WAVER_DEGREES = 5;
 const HALF_WAVER = BULLET_WAVER_DEGREES / 2;
-const SOUND_DELAY = 60;
 
 export default class PlayerShoot extends Behavior {
   constructor(pool) {
@@ -14,8 +13,6 @@ export default class PlayerShoot extends Behavior {
     this.pool = pool;
     this.up = this.down = this.left = this.right = null;
     this.angleForShoot = new Phaser.Point(0, 0);
-    this.shootSound = null;
-    this.shootSoundDelay = 0.
   }
 
   added(player) {
@@ -26,12 +23,9 @@ export default class PlayerShoot extends Behavior {
     this.left = player.game.input.keyboard.addKey(Phaser.Keyboard.J);
     this.right = player.game.input.keyboard.addKey(Phaser.Keyboard.L);
     this.pad = player.game.input.gamepad.pad1;
-    this.shootSound = player.game.add.audio('shoot');
   }
 
   update(player) {
-    this.shootSoundDelay -= player.game.time.physicsElapsedMS;
-
     let shootX = 0;
     let shootY = 0;
     if (this.up.isDown) {
@@ -57,19 +51,11 @@ export default class PlayerShoot extends Behavior {
 
     // TODO: Cooldown period!
     if (shootX || shootY) {
-      let bullet = this.pool.getFirstExists(false);
-      if (bullet) {
-        // Compute angle for shot.
-        this.angleForShoot.set(shootX, shootY);
-        Phaser.Point.normalize(this.angleForShoot, this.angleForShoot);
-        Phaser.Point.rotate(this.angleForShoot, 0, 0, Math.random() * BULLET_WAVER_DEGREES - HALF_WAVER, true);
-        bullet.reset(player.x, player.y);
-        bullet.fire(this.angleForShoot.x, this.angleForShoot.y);
-        if (this.shootSoundDelay <= 0) {
-          this.shootSound.play();
-          this.shootSoundDelay = SOUND_DELAY + Math.random() * 10;
-        }
-      }
+      // Compute angle for shot.
+      this.angleForShoot.set(shootX, shootY);
+      Phaser.Point.normalize(this.angleForShoot, this.angleForShoot);
+      Phaser.Point.rotate(this.angleForShoot, 0, 0, Math.random() * BULLET_WAVER_DEGREES - HALF_WAVER, true);
+      player.game.shooting.fire(player.x, player.y, this.angleForShoot.x, this.angleForShoot.y);
     }
   }
 };
