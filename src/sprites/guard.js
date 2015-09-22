@@ -3,6 +3,11 @@
 var fs = require('fs');
 import enableBehaviors from '../behaviors/enableBehaviors';
 import TiltMove from '../behaviors/tiltMove';
+import March from '../behaviors/march';
+
+const NUM_STEPS = 5;
+const STEP_LIFETIME_MS = 1600;
+const STEP_FREQUENCY_MS = 500;
 
 export default class Guard extends Phaser.Sprite {
   constructor(game, x, y) {
@@ -11,6 +16,7 @@ export default class Guard extends Phaser.Sprite {
     enableBehaviors(this);
 
     this.addBehavior(new TiltMove());
+    this.addBehavior(new March());
 
     this.anchor.setTo(0.5);
     this.body.width = 30;

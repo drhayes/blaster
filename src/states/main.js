@@ -13,7 +13,10 @@ export default class Main extends Phaser.State {
     this.game.add.existing(this.player);
 
     this.game.enemiesGroup = this.game.add.group();
-    this.game.enemiesGroup.add(new Guard(this.game, 300, 200));
+    this.game.enemiesGroup.add(new Guard(this.game, 600, 600));
+    this.game.enemiesGroup.add(new Guard(this.game, 700, 600));
+    this.game.enemiesGroup.add(new Guard(this.game, 800, 600));
+    this.game.enemiesGroup.add(new Guard(this.game, 900, 600));
   }
 
   update() {
