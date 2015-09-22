@@ -11,6 +11,7 @@ export default class Spawn extends Phaser.Plugin {
     game.spawn = this;
     this.spawnEvent = null;
     this.spawning = false;
+    this.spawnSound = this.game.add.audio('playerSpawn');
   }
 
   init() {
@@ -45,6 +46,9 @@ export default class Spawn extends Phaser.Plugin {
       x: 1,
       y: 1
     }, SPAWN_DURATION_MS, Phaser.Easing.Quadratic.Out, true);
+    this.game.time.events.add(SPAWN_DURATION_MS / 2 + SPAWN_DURATION_MS / 4, () => {
+      this.spawnSound.play();
+    })
   }
 
   spawn() {
