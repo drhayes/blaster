@@ -4,6 +4,7 @@ import Player from '../sprites/player';
 
 const SPAWN_TIME_MS = 2000;
 const SPAWN_DURATION_MS = 2000;
+const SPAWN_SOUND_DURATION_MS = 890;
 
 export default class Spawn extends Phaser.Plugin {
   constructor(game, parent) {
@@ -46,7 +47,7 @@ export default class Spawn extends Phaser.Plugin {
       x: 1,
       y: 1
     }, SPAWN_DURATION_MS, Phaser.Easing.Quadratic.Out, true);
-    this.game.time.events.add(SPAWN_DURATION_MS / 2 + SPAWN_DURATION_MS / 4, () => {
+    this.game.time.events.add(SPAWN_DURATION_MS - SPAWN_SOUND_DURATION_MS, () => {
       this.spawnSound.play();
     })
   }
