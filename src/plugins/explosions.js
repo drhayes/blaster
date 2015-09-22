@@ -28,7 +28,7 @@ export default class Explosions extends Phaser.Plugin {
     this.boomSoundDelay -= this.game.time.physicsElapsedMS;
   }
 
-  fire(x, y) {
+  small(x, y) {
     this.splosions.x = x;
     this.splosions.y = y;
     this.splosions.start(true, EXPLOSION_LIFETIME_MS, null, 1);
