@@ -5,7 +5,6 @@ import EnforcerBullet from '../sprites/enforcerBullet';
 
 const SHOOT_TIMER_MS = 2000;
 const SECOND_SHOT_DELAY = 200;
-const THIRD_SHOT_DELAY = 400;
 
 export default class ShootPlayer extends Behavior {
   constructor() {
@@ -32,12 +31,6 @@ export default class ShootPlayer extends Behavior {
       entity.game.shooting.enforcerShoot(entity.x, entity.y, this.angleForShoot.x, this.angleForShoot.y);
       // Second shot.
       entity.game.time.events.add(SECOND_SHOT_DELAY, () => {
-        this.angleForShoot.set(player.x - entity.x + player.body.velocity.x, player.y - entity.y + player.body.velocity.y);
-        Phaser.Point.normalize(this.angleForShoot, this.angleForShoot);
-        entity.game.shooting.enforcerShoot(entity.x, entity.y, this.angleForShoot.x, this.angleForShoot.y);
-      });
-      // Third shot.
-      entity.game.time.events.add(THIRD_SHOT_DELAY, () => {
         this.angleForShoot.set(player.x - entity.x + player.body.velocity.x, player.y - entity.y + player.body.velocity.y);
         Phaser.Point.normalize(this.angleForShoot, this.angleForShoot);
         entity.game.shooting.enforcerShoot(entity.x, entity.y, this.angleForShoot.x, this.angleForShoot.y);
