@@ -20,7 +20,7 @@ export default class Main extends Phaser.State {
   }
 
   update() {
-    this.game.physics.arcade.collide(this.player, this.game.enemiesGroup);
+    this.game.physics.arcade.collide(this.player, this.game.enemiesGroup, this.player.onCollide, null, this.player);
   }
 
   render() {

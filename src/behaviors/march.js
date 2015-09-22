@@ -22,6 +22,10 @@ export default class March extends Behavior {
 
   update(entity) {
     let player = entity.game.player;
+    if (!player.alive) {
+      entity.body.velocity.set(0);
+      return;
+    }
     let velX = 0;
     let velY = 0;
 
