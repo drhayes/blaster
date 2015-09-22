@@ -3,6 +3,7 @@
 var fs = require('fs');
 import enableBehaviors from '../behaviors/enableBehaviors';
 import TwirlMove from '../behaviors/twirlMove';
+import OrbitPlayer from '../behaviors/orbitPlayer';
 
 export default class Enforcer extends Phaser.Sprite {
   constructor(game, x, y) {
@@ -11,6 +12,7 @@ export default class Enforcer extends Phaser.Sprite {
     enableBehaviors(this);
 
     this.addBehavior(new TwirlMove());
+    this.addBehavior(new OrbitPlayer());
 
     this.anchor.set(0.5, 0.6);
     this.body.width = 20;
