@@ -16,6 +16,8 @@ export default class Bullet extends Phaser.Sprite {
     this.body.collideWorldBounds = true;
     this.tint = 0x4682b4;
 
+    this.attack = 1;
+
     let glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
     this.filters = [glow];
   }

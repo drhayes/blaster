@@ -18,8 +18,25 @@ export default class Guard extends Phaser.Sprite {
     this.body.collideWorldBounds = true;
     this.tint = 0xcb0404;
 
+    this.health = 30;
+
     let glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
     this.filters = [glow];
+  }
+
+  damage(amount) {
+    if (this.alive) {
+      this.health -= amount;
+      if (this.health < 0) {
+        this.alive = false;
+        this.startDying();
+      }
+    }
+  }
+
+  startDying() {
+    this.game.explosions.medium(this.x, this.y);
+    this.kill();
   }
 
   update() {

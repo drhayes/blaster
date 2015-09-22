@@ -43,6 +43,7 @@ export default class Shooting extends Phaser.Plugin {
     this.game.explosions.small(bullet.x, bullet.y);
     enemy.position.x -= enemy.body.overlapX / 2;
     enemy.position.y -= enemy.body.overlapY / 2;
+    enemy.damage(bullet.attack);
     bullet.kill();
   }
 };
