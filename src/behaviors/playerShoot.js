@@ -10,7 +10,6 @@ export default class PlayerShoot extends Behavior {
   constructor(pool) {
     super()
     this.pad = null;
-    this.pool = pool;
     this.up = this.down = this.left = this.right = null;
     this.angleForShoot = new Phaser.Point(0, 0);
   }
@@ -55,7 +54,7 @@ export default class PlayerShoot extends Behavior {
       this.angleForShoot.set(shootX, shootY);
       Phaser.Point.normalize(this.angleForShoot, this.angleForShoot);
       Phaser.Point.rotate(this.angleForShoot, 0, 0, Math.random() * BULLET_WAVER_DEGREES - HALF_WAVER, true);
-      player.game.shooting.fire(player.x, player.y, this.angleForShoot.x, this.angleForShoot.y);
+      player.game.shooting.playerShoot(player.x, player.y, this.angleForShoot.x, this.angleForShoot.y);
     }
   }
 };
