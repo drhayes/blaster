@@ -8,9 +8,7 @@ export default class Main extends Phaser.State {
   create() {
     this.game.shooting.init();
     this.game.explosions.init();
-
-    this.game.player = this.player = new Player(this.game, 200, 200);
-    this.game.add.existing(this.player);
+    this.game.spawn.init();
 
     this.game.enemiesGroup = this.game.add.group();
     this.game.enemiesGroup.add(new Guard(this.game, 600, 600));
@@ -20,7 +18,10 @@ export default class Main extends Phaser.State {
   }
 
   update() {
-    this.game.physics.arcade.collide(this.player, this.game.enemiesGroup, this.player.onCollide, null, this.player);
+    let player = this.game.player;
+    if (player) {
+      this.game.physics.arcade.collide(player, this.game.enemiesGroup, player.onCollide, null, player);
+    }
   }
 
   render() {
