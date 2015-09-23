@@ -19,6 +19,7 @@ export default class Enforcer extends Phaser.Sprite {
     this.anchor.set(0.5, 0.6);
     this.body.width = 20;
     this.body.height = 30;
+    this.body.bounce.set(0.4);
     this.body.collideWorldBounds = true;
     this.tint = 0xcb0404;
 

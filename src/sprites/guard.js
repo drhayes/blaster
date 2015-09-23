@@ -21,6 +21,7 @@ export default class Guard extends Phaser.Sprite {
     this.anchor.setTo(0.5);
     this.body.width = 30;
     this.body.height = 30;
+    this.body.bounce.set(1);
     this.body.collideWorldBounds = true;
     this.tint = 0xcb0404;
 
