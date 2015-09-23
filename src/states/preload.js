@@ -15,6 +15,7 @@ export default class Preload extends Phaser.State {
 
     this.game.load.bitmapFont('playFont', 'media/fonts/play.png', 'media/fonts/play.fnt');
 
+    this.game.load.image('circuitry', 'media/images/circuitry.jpg', 691, 693);
     this.game.load.spritesheet('player', 'media/images/player.png', 32, 32);
 
     this.game.load.audio('shoot', 'media/sounds/shoot.mp3');
