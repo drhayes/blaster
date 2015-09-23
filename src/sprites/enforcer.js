@@ -5,6 +5,7 @@ import enableBehaviors from '../behaviors/enableBehaviors';
 import TwirlMove from '../behaviors/twirlMove';
 import OrbitPlayer from '../behaviors/orbitPlayer';
 import ShootPlayer from '../behaviors/shootPlayer';
+import FleeCenter from '../behaviors/fleeCenter';
 
 export default class Enforcer extends Phaser.Sprite {
   constructor(game, x, y) {
@@ -15,6 +16,7 @@ export default class Enforcer extends Phaser.Sprite {
     this.addBehavior(new TwirlMove());
     this.addBehavior(new OrbitPlayer());
     this.addBehavior(new ShootPlayer());
+    this.addBehavior(new FleeCenter());
 
     this.anchor.set(0.5, 0.6);
     this.body.width = 20;

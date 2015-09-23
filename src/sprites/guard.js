@@ -4,6 +4,7 @@ var fs = require('fs');
 import enableBehaviors from '../behaviors/enableBehaviors';
 import TiltMove from '../behaviors/tiltMove';
 import March from '../behaviors/march';
+import FleeCenter from '../behaviors/fleeCenter';
 
 const NUM_STEPS = 5;
 const STEP_LIFETIME_MS = 1600;
@@ -17,6 +18,7 @@ export default class Guard extends Phaser.Sprite {
 
     this.addBehavior(new TiltMove());
     this.addBehavior(new March());
+    this.addBehavior(new FleeCenter());
 
     this.anchor.setTo(0.5);
     this.body.width = 30;
