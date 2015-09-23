@@ -25,6 +25,9 @@ export default class PlayerShoot extends Behavior {
   }
 
   update(player) {
+    if (!player.alive) {
+      return;
+    }
     let shootX = 0;
     let shootY = 0;
     if (this.up.isDown) {

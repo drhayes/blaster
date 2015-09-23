@@ -27,6 +27,9 @@ export default class PlayerMove extends Behavior {
   }
 
   update(player) {
+    if (!player.alive) {
+      return;
+    }
     let body = player.body;
     let accelX = 0;
     let accelY = 0;
