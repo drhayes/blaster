@@ -1,17 +1,14 @@
 'use strict';
 
-var fs = require('fs');
-import enableBehaviors from '../behaviors/enableBehaviors';
+import Enemy from './enemy';
 import TwirlMove from '../behaviors/twirlMove';
 import OrbitPlayer from '../behaviors/orbitPlayer';
 import ShootPlayer from '../behaviors/shootPlayer';
 import FleeCenter from '../behaviors/fleeCenter';
 
-export default class Enforcer extends Phaser.Sprite {
+export default class Enforcer extends Enemy {
   constructor(game, x, y) {
     super(game, x, y, 'player', 3);
-    game.physics.arcade.enable(this);
-    enableBehaviors(this);
 
     this.addBehavior(new TwirlMove());
     this.addBehavior(new OrbitPlayer());
@@ -22,31 +19,7 @@ export default class Enforcer extends Phaser.Sprite {
     this.body.width = 20;
     this.body.height = 30;
     this.body.bounce.set(0.4);
-    this.body.collideWorldBounds = true;
-    this.tint = game.tinting.currentTint;
 
     this.health = 20;
-
-    let glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
-    this.filters = [glow];
-  }
-
-  damage(amount) {
-    if (this.alive) {
-      this.health -= amount;
-      if (this.health < 0) {
-        this.alive = false;
-        this.startDying();
-      }
-    }
-  }
-
-  startDying() {
-    this.game.explosions.medium(this.x, this.y);
-    this.kill();
-  }
-
-  update() {
-    this.behave('update');
   }
 };

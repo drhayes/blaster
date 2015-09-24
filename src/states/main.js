@@ -11,6 +11,7 @@ export default class Main extends Phaser.State {
     this.game.shooting.init();
     this.game.explosions.init();
     this.game.spawn.init();
+    this.game.score.init();
 
     this.back = this.game.add.tileSprite(0, 0, 691, 693, 'circuitry');
     this.back.width = 1280;
