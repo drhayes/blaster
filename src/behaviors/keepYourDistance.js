@@ -28,7 +28,7 @@ export default class KeepYourDistance extends Behavior {
     } else if (distance < MIN_DISTANCE) {
       // Move away from player.
       this.angleForMove.rotate(0, 0, 180, true);
-      this.angleForMove.multiply(15000 / VELOCITY, 15000 / VELOCITY);
+      this.angleForMove.multiply(15000 / distance, 15000 / distance);
     } else {
       // Keep distance.
       this.angleForMove.rotate(0, 0, 90 * this.direction, true);
