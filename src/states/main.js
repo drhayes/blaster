@@ -22,7 +22,11 @@ export default class Main extends Phaser.State {
     this.back.tilePosition.y = -this.game.world.centerY * 0.2;
 
     this.game.enemiesGroup = this.game.add.group();
-    this.game.enemiesGroup.add(new Assassin(this.game, 300, 300));
+    this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
+    this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
+    this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
+    this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
+    this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
     // for (let i = 0; i < 6; i++) {
     //   this.game.enemiesGroup.add(new Enforcer(this.game, this.game.world.randomX, this.game.world.randomY));
     // }

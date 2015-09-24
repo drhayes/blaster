@@ -2,12 +2,15 @@
 
 var fs = require('fs');
 import enableBehaviors from '../behaviors/enableBehaviors';
+import KeepYourDistance from '../behaviors/keepYourDistance';
 
 export default class Assassin extends Phaser.Sprite {
   constructor(game, x, y) {
     super(game, x, y, 'player', 5);
     game.physics.arcade.enable(this);
     enableBehaviors(this);
+
+    this.addBehavior(new KeepYourDistance());
 
     this.anchor.set(0.5, 0.5);
     this.body.width = 30;
