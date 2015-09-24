@@ -21,5 +21,8 @@ export default class Enforcer extends Enemy {
     this.body.bounce.set(0.4);
 
     this.health = 20;
+    this.score = 500;
   }
 };
+
+Enforcer.score = Symbol('Enforcer');

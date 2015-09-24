@@ -18,7 +18,6 @@ export default class Main extends Phaser.State {
     this.back.height = 960;
     this.back.fixedToCamera = true;
     this.back.alpha = 0.2;
-    console.log(this.game.tinting);
     this.back.tint = this.game.tinting.currentTint;
     this.back.tilePosition.x = -this.game.world.centerX * 0.2;
     this.back.tilePosition.y = -this.game.world.centerY * 0.2;

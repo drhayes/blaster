@@ -23,5 +23,6 @@ export default class Guard extends Enemy {
     this.body.bounce.set(1);
 
     this.health = 30;
+    this.score = 200;
   }
 };

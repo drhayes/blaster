@@ -21,5 +21,8 @@ export default class Assassin extends Enemy {
     this.body.bounce.set(0.4);
 
     this.health = 10;
+    this.score = 1000;
   }
 };
+
+Assassin.score = Symbol('Assassin');
