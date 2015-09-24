@@ -14,6 +14,7 @@ export default class Shooting extends Phaser.Plugin {
     this.shootSound = game.add.audio('shoot');
     this.shootSoundDelay = 0;
     this.enforcerShootSound = game.add.audio('enforcerShoot');
+    this.spearSound = game.add.audio('spearShoot');
   }
 
   init() {
@@ -61,7 +62,7 @@ export default class Shooting extends Phaser.Plugin {
     if (spear) {
       spear.reset(sx, sy);
       spear.fire(vx, vy);
-      // this.spearSound.play();
+      this.spearSound.play();
     }
   }
 

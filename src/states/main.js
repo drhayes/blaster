@@ -27,12 +27,12 @@ export default class Main extends Phaser.State {
     this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
     this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
     this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
-    // for (let i = 0; i < 6; i++) {
-    //   this.game.enemiesGroup.add(new Enforcer(this.game, this.game.world.randomX, this.game.world.randomY));
-    // }
-    // for (let i = 0; i < 10; i++) {
-    //   this.game.enemiesGroup.add(new Guard(this.game, this.game.world.randomX, this.game.world.randomY));
-    // }
+    for (let i = 0; i < 6; i++) {
+      this.game.enemiesGroup.add(new Enforcer(this.game, this.game.world.randomX, this.game.world.randomY));
+    }
+    for (let i = 0; i < 10; i++) {
+      this.game.enemiesGroup.add(new Guard(this.game, this.game.world.randomX, this.game.world.randomY));
+    }
   }
 
   update() {

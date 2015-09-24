@@ -23,6 +23,7 @@ export default class Preload extends Phaser.State {
     this.game.load.audio('mediumBoom', 'media/sounds/mediumBoom.mp3');
     this.game.load.audio('playerSpawn', 'media/sounds/playerSpawn.mp3');
     this.game.load.audio('enforcerShoot', 'media/sounds/enforcerShoot.mp3');
+    this.game.load.audio('spearShoot', 'media/sounds/spear.mp3');
   }
 
   create() {
