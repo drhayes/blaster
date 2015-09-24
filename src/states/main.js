@@ -17,6 +17,8 @@ export default class Main extends Phaser.State {
     this.back.fixedToCamera = true;
     this.back.alpha = 0.2;
     this.back.tint = 0xcb0404;
+    this.back.tilePosition.x = -this.game.world.centerX * 0.2;
+    this.back.tilePosition.y = -this.game.world.centerY * 0.2;
 
     this.game.enemiesGroup = this.game.add.group();
     for (let i = 0; i < 6; i++) {
