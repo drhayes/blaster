@@ -3,6 +3,7 @@
 import Shooting from '../plugins/shooting';
 import Explosions from '../plugins/explosions';
 import Spawn from '../plugins/spawn';
+import Tinting from '../plugins/tinting';
 
 export default class Preload extends Phaser.State {
   preload() {
@@ -27,6 +28,7 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
+    this.game.plugins.add(Tinting);
     this.game.plugins.add(Shooting);
     this.game.plugins.add(Explosions);
     this.game.plugins.add(Spawn);

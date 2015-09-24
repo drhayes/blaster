@@ -25,7 +25,7 @@ export default class Guard extends Phaser.Sprite {
     this.body.height = 30;
     this.body.bounce.set(1);
     this.body.collideWorldBounds = true;
-    this.tint = 0xcb0404;
+    this.tint = game.tinting.currentTint;
 
     this.health = 30;
 

@@ -15,7 +15,7 @@ export default class Spear extends Phaser.Sprite {
     this.body.height = 3;
     this.body.bounce.set(0.9);
     this.body.collideWorldBounds = true;
-    this.tint = 0xcb0404;
+    this.tint = game.tinting.currentTint;
 
     let glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
     this.filters = [glow];
