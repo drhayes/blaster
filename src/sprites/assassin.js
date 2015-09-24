@@ -5,6 +5,7 @@ import enableBehaviors from '../behaviors/enableBehaviors';
 import KeepYourDistance from '../behaviors/keepYourDistance';
 import FleeOnDamage from '../behaviors/fleeOnDamage';
 import FleeCenter from '../behaviors/fleeCenter';
+import ThrowSpear from '../behaviors/throwSpear';
 
 export default class Assassin extends Phaser.Sprite {
   constructor(game, x, y) {
@@ -15,6 +16,7 @@ export default class Assassin extends Phaser.Sprite {
     this.addBehavior(new KeepYourDistance());
     this.addBehavior(new FleeOnDamage());
     this.addBehavior(new FleeCenter());
+    this.addBehavior(new ThrowSpear());
 
     this.anchor.set(0.5, 0.5);
     this.body.width = 30;

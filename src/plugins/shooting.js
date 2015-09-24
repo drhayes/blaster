@@ -2,6 +2,7 @@
 
 import Bullet from '../sprites/bullet';
 import EnforcerBullet from '../sprites/enforcerBullet';
+import Spear from '../sprites/spear';
 
 const NUM_BULLETS = 50;
 const SOUND_DELAY = 60;
@@ -17,17 +18,20 @@ export default class Shooting extends Phaser.Plugin {
 
   init() {
     this.playerBullets = this.game.add.group();
+    this.enforcerBullets = this.game.add.group();
+    this.spears = this.game.add.group();
     for (let x = 0; x < NUM_BULLETS; x++) {
       let bullet = new Bullet(this.game, 0, 0);
       bullet.alive = bullet.exists = bullet.visible = false;
       this.playerBullets.add(bullet)
-    }
 
-    this.enforcerBullets = this.game.add.group();
-    for (let x = 0; x < NUM_BULLETS; x++) {
-      let bullet = new EnforcerBullet(this.game, 0, 0);
-      bullet.alive = bullet.exists = bullet.visible = false;
-      this.enforcerBullets.add(bullet);
+      let enforcerBullet = new EnforcerBullet(this.game, 0, 0);
+      enforcerBullet.alive = enforcerBullet.exists = enforcerBullet.visible = false;
+      this.enforcerBullets.add(enforcerBullet);
+
+      let spear = new Spear(this.game, 0, 0);
+      spear.alive = spear.exists = spear.visible = false;
+      this.spears.add(spear);
     }
   }
 
@@ -52,6 +56,15 @@ export default class Shooting extends Phaser.Plugin {
     }
   }
 
+  throwSpear(sx, sy, vx, vy) {
+    let spear = this.spears.getFirstExists(false);
+    if (spear) {
+      spear.reset(sx, sy);
+      spear.fire(vx, vy);
+      // this.spearSound.play();
+    }
+  }
+
   update() {
     this.shootSoundDelay -= this.game.time.physicsElapsedMS;
     this.game.physics.arcade.overlap(this.game.enemiesGroup, this.playerBullets, this.onOverlap, null, this);
@@ -59,6 +72,7 @@ export default class Shooting extends Phaser.Plugin {
     let player = this.game.player;
     if (player) {
       this.game.physics.arcade.overlap(player, this.enforcerBullets, this.onEnforcerBullet, null, this);
+      this.game.physics.arcade.overlap(player, this.spears, this.onEnforcerBullet, null, this);
     }
   }
 
