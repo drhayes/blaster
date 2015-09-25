@@ -1,9 +1,5 @@
 'use strict';
 
-import Assassin from '../sprites/assassin';
-import Enforcer from '../sprites/enforcer';
-import Guard from '../sprites/guard';
-
 export default class Score extends Phaser.Plugin {
   constructor(game, parent) {
     super(game, parent);
