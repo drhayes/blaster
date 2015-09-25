@@ -12,7 +12,7 @@ export default class Score extends Phaser.Plugin {
   }
 
   init() {
-    this.text = this.game.add.bitmapText(10, 10, 'playFont', 'Score: 0');
+    this.text = this.game.add.bitmapText(10, 10, 'computerPixelFont', 'Score: 0', 40);
   }
 
   updateScore() {

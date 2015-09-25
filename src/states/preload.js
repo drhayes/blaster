@@ -15,7 +15,7 @@ export default class Preload extends Phaser.State {
     this.bar.anchor.setTo(0.5, 0.5);
     this.game.load.setPreloadSprite(this.bar);
 
-    this.game.load.bitmapFont('playFont', 'media/fonts/play.png', 'media/fonts/play.fnt');
+    this.game.load.bitmapFont('computerPixelFont', 'media/fonts/computerPixel.png', 'media/fonts/computerPixel.fnt');
 
     this.game.load.image('circuitry', 'media/images/circuitry.jpg', 691, 693);
     this.game.load.spritesheet('player', 'media/images/player.png', 32, 32);
