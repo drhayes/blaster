@@ -12,11 +12,15 @@ export default class Score extends Phaser.Plugin {
   }
 
   init() {
-    this.text = this.game.add.bitmapText(10, 10, 'computerPixelFont', 'Score: 0', 40);
+    this.scoreText = this.game.add.bitmapText(360, 10, 'computerPixelFont', '0', 40);
+    this.scoreText.anchor.setTo(1, 0);
+    this.scoreText.align = 'right';
+    this.updateScore();
   }
 
   updateScore() {
-    this.text.text = `Score: ${this.current}`;
+    // Stick commas in as the thousands separator.
+    this.scoreText.text = this.current.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   killed(thing) {
