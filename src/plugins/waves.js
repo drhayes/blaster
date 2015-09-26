@@ -19,6 +19,10 @@ export default class Waves extends Phaser.Plugin {
 
   init() {
     this.enemiesGroup = this.game.enemiesGroup = this.game.add.group();
+    this.waveIndicator = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY - 90, 'computerPixelFont', 'Wave 1', 40);
+    this.waveIndicator.anchor.setTo(0.5, 0);
+    this.waveIndicator.align = 'center';
+    this.waveIndicator.visible = false;
   }
 
   update() {
@@ -46,5 +50,14 @@ export default class Waves extends Phaser.Plugin {
     for (let i = 0; i < wave.assassins; i++) {
       this.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
     }
+    this.waveIndicator.text = `Wave ${this.current + 1}`;
+    this.waveIndicator.visible = true;
+    this.game.time.events.add(1000, () => {
+      this.waveIndicator.text = `Wave ${this.current + 1}
+Get ready!`;
+      this.game.time.events.add(2000, () => {
+        this.waveIndicator.visible = false;
+      })
+    })
   }
 };
