@@ -57,8 +57,11 @@ export default class Spawn extends Phaser.Plugin {
     this.game.time.events.add(SPAWN_DURATION_MS - SPAWN_SOUND_DURATION_MS, () => {
       this.spawnSound.play();
     });
-    this.lives -= 1;
     this.livesImage.width = this.lives * 32;
+  }
+
+  die() {
+    this.lives -= 1;
   }
 
   spawn() {

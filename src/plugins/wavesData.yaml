@@ -1,4 +1,5 @@
 -
-  guards: 10
-  enforcers: 1
-  assassins: 1
+  guards: 8
+-
+  guards: 12
+  enforcers: 2

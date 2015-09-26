@@ -15,6 +15,7 @@ export default class Waves extends Phaser.Plugin {
 
     this.current = 0;
     this.loaded = false;
+    this.transitioning = false;
   }
 
   init() {
@@ -33,6 +34,15 @@ export default class Waves extends Phaser.Plugin {
     if (player) {
       this.game.physics.arcade.collide(player, this.enemiesGroup, player.onCollide, null, player);
     }
+    if (!this.enemiesGroup.getFirstAlive() && this.loaded && !this.transitioning) {
+      this.transitioning = true;
+      this.game.time.events.add(1000, () => {
+        this.game.player.kill();
+        this.current += 1;
+        this.loaded = false;
+        this.transitioning = false;
+      })
+    }
   }
 
   loadCurrentWave() {
@@ -40,7 +50,11 @@ export default class Waves extends Phaser.Plugin {
     // Paranoid security.
     this.enemiesGroup.removeAll();
     this.enemiesGroup.alpha = 1;
-    let wave = wavesData[this.current];
+    let wave = wavesData[Phaser.Math.wrap(this.current, 0, wavesData.length - 1)];
+    if (!wave) {
+      console.error('Uhhhh.... no wave data!', wavesData);
+      return;
+    }
     for (let i = 0; i < wave.guards; i++) {
       this.enemiesGroup.add(new Guard(this.game, this.game.world.randomX, this.game.world.randomY));
     }
@@ -55,7 +69,7 @@ export default class Waves extends Phaser.Plugin {
     this.game.time.events.add(1000, () => {
       this.waveIndicator.text = `Wave ${this.current + 1}
 Get ready!`;
-      this.game.time.events.add(2000, () => {
+      this.game.time.events.add(2750, () => {
         this.waveIndicator.visible = false;
       })
     })
