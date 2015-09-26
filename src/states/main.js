@@ -1,5 +1,10 @@
 'use strict';
 
+import Shooting from '../plugins/shooting';
+import Explosions from '../plugins/explosions';
+import Spawn from '../plugins/spawn';
+import Tinting from '../plugins/tinting';
+import Score from '../plugins/score';
 import Player from '../sprites/player';
 import Guard from '../sprites/guard';
 import Bullet from '../sprites/bullet';
@@ -8,10 +13,11 @@ import Assassin from '../sprites/assassin';
 
 export default class Main extends Phaser.State {
   create() {
-    this.game.shooting.init();
-    this.game.explosions.init();
-    this.game.spawn.init();
-    this.game.score.init();
+    this.game.plugins.add(Tinting);
+    this.game.plugins.add(Shooting);
+    this.game.plugins.add(Explosions);
+    this.game.plugins.add(Spawn);
+    this.game.plugins.add(Score);
 
     this.back = this.game.add.tileSprite(0, 0, 691, 693, 'circuitry');
     this.back.width = 1280;

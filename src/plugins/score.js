@@ -8,8 +8,8 @@ export default class Score extends Phaser.Plugin {
   }
 
   init() {
-    this.scoreText = this.game.add.bitmapText(360, 10, 'computerPixelFont', '0', 40);
-    this.scoreText.anchor.setTo(1, 0);
+    this.scoreText = this.game.add.bitmapText(360, 20, 'computerPixelFont', '0', 40);
+    this.scoreText.anchor.setTo(1, 0.3);
     this.scoreText.align = 'right';
     this.updateScore();
   }

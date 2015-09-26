@@ -2,6 +2,7 @@
 
 import Player from '../sprites/player';
 
+const NUM_LIVES = 5;
 const SPAWN_TIME_MS = 2000;
 const SPAWN_DURATION_MS = 2000;
 const SPAWN_SOUND_DURATION_MS = 890;
@@ -13,6 +14,7 @@ export default class Spawn extends Phaser.Plugin {
     this.spawnEvent = null;
     this.spawning = false;
     this.spawnSound = this.game.add.audio('playerSpawn');
+    this.lives = NUM_LIVES;
   }
 
   init() {
@@ -20,13 +22,18 @@ export default class Spawn extends Phaser.Plugin {
     this.playerImage.anchor.set(0.5);
     this.playerImage.visible = false;
     this.playerImage.tint = 0x4682b4;
+    this.livesImage = game.add.tileSprite(365, 20, 32, 32, 'player', 0);
+    this.livesImage.anchor.setTo(0, 0.5);
+    this.livesImage.tint = 0x4682b4;
+    this.livesImage.scale.setTo(0.8);
+    this.livesImage.width = this.lives * 32;
   }
 
   update() {
     if (this.spawnEvent || this.spawning) {
       return;
     }
-    if (!this.game.player || !this.game.player.alive) {
+    if ((!this.game.player || !this.game.player.alive) && this.lives > 0) {
       this.spawnEvent = this.game.time.events.add(SPAWN_TIME_MS, this.startSpawn, this);
     }
   }
@@ -49,7 +56,9 @@ export default class Spawn extends Phaser.Plugin {
     }, SPAWN_DURATION_MS, Phaser.Easing.Quadratic.Out, true);
     this.game.time.events.add(SPAWN_DURATION_MS - SPAWN_SOUND_DURATION_MS, () => {
       this.spawnSound.play();
-    })
+    });
+    this.lives -= 1;
+    this.livesImage.width = this.lives * 32;
   }
 
   spawn() {

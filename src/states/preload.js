@@ -1,11 +1,5 @@
 'use strict';
 
-import Shooting from '../plugins/shooting';
-import Explosions from '../plugins/explosions';
-import Spawn from '../plugins/spawn';
-import Tinting from '../plugins/tinting';
-import Score from '../plugins/score';
-
 export default class Preload extends Phaser.State {
   preload() {
     this.barBg = this.game.add.sprite(game.world.centerX, game.world.centerY, 'loading-bg');
@@ -29,12 +23,6 @@ export default class Preload extends Phaser.State {
   }
 
   create() {
-    this.game.plugins.add(Tinting);
-    this.game.plugins.add(Shooting);
-    this.game.plugins.add(Explosions);
-    this.game.plugins.add(Spawn);
-    this.game.plugins.add(Score);
-
     this.game.state.start('main', true, false);
   }
 };
