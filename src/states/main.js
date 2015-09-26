@@ -5,15 +5,13 @@ import Explosions from '../plugins/explosions';
 import Spawn from '../plugins/spawn';
 import Tinting from '../plugins/tinting';
 import Score from '../plugins/score';
+import Waves from '../plugins/waves';
 import Player from '../sprites/player';
-import Guard from '../sprites/guard';
-import Bullet from '../sprites/bullet';
-import Enforcer from '../sprites/enforcer';
-import Assassin from '../sprites/assassin';
 
 export default class Main extends Phaser.State {
   create() {
     this.game.plugins.add(Tinting);
+    this.game.plugins.add(Waves);
     this.game.plugins.add(Shooting);
     this.game.plugins.add(Explosions);
     this.game.plugins.add(Spawn);
@@ -25,39 +23,17 @@ export default class Main extends Phaser.State {
     this.back.fixedToCamera = true;
     this.back.alpha = 0.2;
     this.back.tint = this.game.tinting.currentTint;
+    // Starting position for player.
     this.back.tilePosition.x = -this.game.world.centerX * 0.2;
     this.back.tilePosition.y = -this.game.world.centerY * 0.2;
 
-    this.game.enemiesGroup = this.game.add.group();
-    this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
-    this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
-    this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
-    this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
-    this.game.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
-    for (let i = 0; i < 6; i++) {
-      this.game.enemiesGroup.add(new Enforcer(this.game, this.game.world.randomX, this.game.world.randomY));
-    }
-    for (let i = 0; i < 10; i++) {
-      this.game.enemiesGroup.add(new Guard(this.game, this.game.world.randomX, this.game.world.randomY));
-    }
   }
 
   update() {
     let player = this.game.player;
     if (player) {
-      this.game.physics.arcade.collide(player, this.game.enemiesGroup, player.onCollide, null, player);
       this.back.tilePosition.x = -player.x * 0.2;
       this.back.tilePosition.y = -player.y * 0.2;
     }
-  }
-
-  render() {
-    // this.game.enemiesGroup.children.forEach((c) => {
-    //   this.game.debug.body(c);
-    // });
-    // this.game.shooting.pool.children.forEach((c) => {
-    //   this.game.debug.body(c);
-    // });
-    // this.game.debug.body(this.player);
   }
 };
