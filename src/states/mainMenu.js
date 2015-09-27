@@ -2,13 +2,14 @@
 
 export default class MainMenu extends Phaser.State {
   makeText(y, text, size) {
+    size = size || 40;
     let textThing = this.game.add.bitmapText(this.game.world.centerX, y, 'computerPixelFont', text, size);
     textThing.anchor.setTo(0.5, 0.5);
     textThing.align = 'center';
     return textThing;
   }
   create() {
-    this.titleText = this.makeText(50, 'BLASTER', 40);
+    this.titleText = this.makeText(50, 'BLASTER');
     this.instructionsText = this.makeText(200, `WASD to move
 IJKL to shoot`);
     this.pressAnyKeyText = this.makeText(this.game.world.centerY, 'Press any key to begin');

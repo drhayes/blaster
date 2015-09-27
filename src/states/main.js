@@ -26,11 +26,25 @@ export default class Main extends Phaser.State {
     // Starting position for player.
     this.back.tilePosition.x = -this.game.world.centerX * 0.2;
     this.back.tilePosition.y = -this.game.world.centerY * 0.2;
-    this.game.waves.onTransition.add(() => {
+    this.transitionSignal = this.game.waves.onTransition.add(() => {
       this.back.tilePosition.x = -this.game.world.centerX * 0.2;
       this.back.tilePosition.y = -this.game.world.centerY * 0.2;
       this.back.tint = this.game.tinting.currentTint;
     });
+    this.game.spawn.onGameOver.addOnce(() => {
+      let gameOverText = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY, 'computerPixelFont', `GAME OVER
+Press any key to continue`, 40);
+      gameOverText.anchor.setTo(0.5, 0.5);
+      gameOverText.align = 'center';
+      this.game.input.keyboard.addCallbacks(this, null, null, this.onKeyPress);
+    });
+  }
+
+  onKeyPress() {
+    this.transitionSignal.detach();
+    this.game.input.keyboard.onPressCallback = null;
+    this.game.input.keyboard.reset(true);
+    this.game.state.start('mainMenu', true, false);
   }
 
   update() {
@@ -39,5 +53,9 @@ export default class Main extends Phaser.State {
       this.back.tilePosition.x = -player.x * 0.2;
       this.back.tilePosition.y = -player.y * 0.2;
     }
+  }
+
+  shutdown() {
+    this.game.plugins.removeAll();
   }
 };

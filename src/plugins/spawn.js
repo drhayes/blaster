@@ -2,7 +2,7 @@
 
 import Player from '../sprites/player';
 
-const NUM_LIVES = 5;
+const NUM_LIVES = 1;
 const SPAWN_TIME_MS = 2000;
 const SPAWN_DURATION_MS = 2000;
 const SPAWN_SOUND_DURATION_MS = 890;
@@ -15,6 +15,7 @@ export default class Spawn extends Phaser.Plugin {
     this.spawning = false;
     this.spawnSound = this.game.add.audio('playerSpawn');
     this.lives = NUM_LIVES;
+    this.onGameOver = new Phaser.Signal();
   }
 
   init() {
@@ -35,6 +36,9 @@ export default class Spawn extends Phaser.Plugin {
     }
     if ((!this.game.player || !this.game.player.alive) && this.lives >= 0) {
       this.spawnEvent = this.game.time.events.add(SPAWN_TIME_MS, this.startSpawn, this);
+    }
+    if ((!this.game.player || !this.game.player.alive) && this.lives < 0) {
+      this.onGameOver.dispatch();
     }
   }
 
