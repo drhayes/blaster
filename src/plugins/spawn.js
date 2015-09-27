@@ -33,7 +33,7 @@ export default class Spawn extends Phaser.Plugin {
     if (this.spawnEvent || this.spawning) {
       return;
     }
-    if ((!this.game.player || !this.game.player.alive) && this.lives > 0) {
+    if ((!this.game.player || !this.game.player.alive) && this.lives >= 0) {
       this.spawnEvent = this.game.time.events.add(SPAWN_TIME_MS, this.startSpawn, this);
     }
   }
