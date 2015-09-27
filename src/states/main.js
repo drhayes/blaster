@@ -10,8 +10,8 @@ import Player from '../sprites/player';
 
 export default class Main extends Phaser.State {
   create() {
-    this.game.plugins.add(Tinting);
     this.game.plugins.add(Waves);
+    this.game.plugins.add(Tinting);
     this.game.plugins.add(Shooting);
     this.game.plugins.add(Explosions);
     this.game.plugins.add(Spawn);
@@ -26,12 +26,16 @@ export default class Main extends Phaser.State {
     // Starting position for player.
     this.back.tilePosition.x = -this.game.world.centerX * 0.2;
     this.back.tilePosition.y = -this.game.world.centerY * 0.2;
-
+    this.game.waves.onTransition.add(() => {
+      this.back.tilePosition.x = -this.game.world.centerX * 0.2;
+      this.back.tilePosition.y = -this.game.world.centerY * 0.2;
+      this.back.tint = this.game.tinting.currentTint;
+    });
   }
 
   update() {
     let player = this.game.player;
-    if (player) {
+    if (player && player.alive) {
       this.back.tilePosition.x = -player.x * 0.2;
       this.back.tilePosition.y = -player.y * 0.2;
     }

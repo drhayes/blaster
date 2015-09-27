@@ -16,6 +16,7 @@ export default class Waves extends Phaser.Plugin {
     this.current = 0;
     this.loaded = false;
     this.transitioning = false;
+    this.onTransition = new Phaser.Signal();
   }
 
   init() {
@@ -41,6 +42,7 @@ export default class Waves extends Phaser.Plugin {
         this.current += 1;
         this.loaded = false;
         this.transitioning = false;
+        this.onTransition.dispatch();
       })
     }
   }

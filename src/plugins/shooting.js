@@ -34,6 +34,12 @@ export default class Shooting extends Phaser.Plugin {
       spear.alive = spear.exists = spear.visible = false;
       this.spears.add(spear);
     }
+
+    this.game.waves.onTransition.add(() => {
+      this.playerBullets.callAll('kill');
+      this.enforcerBullets.callAll('kill');
+      this.spears.callAll('kill');
+    });
   }
 
   playerShoot(sx, sy, vx, vy) {

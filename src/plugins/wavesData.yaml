@@ -1,5 +1,4 @@
 -
-  guards: 8
+  guards: 1
 -
-  guards: 12
-  enforcers: 2
+  guards: 2
