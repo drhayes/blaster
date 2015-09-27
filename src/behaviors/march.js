@@ -3,7 +3,6 @@
 import Behavior from './behavior';
 
 const MAX_VEL = 200;
-// const DRAG = 8000;
 const SLEEP_TIME_MS = 200;
 const MOVE_TIME_MS = 200;
 const EPSILON = 20;
@@ -16,8 +15,7 @@ export default class March extends Behavior {
   }
 
   added(entity) {
-    // entity.body.maxVelocity.set(MAX_VEL);
-    // entity.body.drag.setTo(DRAG);
+    entity.body.maxVelocity.set(MAX_VEL);
     this.marchSound = entity.game.add.audio('march');
   }
 
@@ -56,9 +54,6 @@ export default class March extends Behavior {
           velX = MAX_VEL;
         }
       }
-    }
-    if (this.sleepTime > 0) {
-      // entity.body.velocity.set(0);
     }
     entity.body.velocity.x = velX;
     entity.body.velocity.y = velY;
