@@ -15,7 +15,7 @@ export default class Spawn {
     this.spawnEvent = null;
     this.spawning = false;
     this.spawnSound = this.game.add.audio('playerSpawn');
-    this.lives = NUM_LIVES;
+    this.lives = NUM_LIVES - 1;
     this.onGameOver = new Phaser.Signal();
     this.playerImage = game.add.image(this.game.world.centerX, this.game.world.centerY, 'player', 0);
     this.playerImage.anchor.set(0.5);
