@@ -39,6 +39,9 @@ export default class Shooting extends Phaser.Plugin {
       this.playerBullets.callAll('kill');
       this.enforcerBullets.callAll('kill');
       this.spears.callAll('kill');
+      // Set tint on bullets and spears.
+      this.enforcerBullets.setAll('tint', this.game.tinting.currentTint);
+      this.spears.setAll('tint', this.game.tinting.currentTint);
     });
   }
 
