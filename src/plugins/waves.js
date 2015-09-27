@@ -52,7 +52,7 @@ export default class Waves extends Phaser.Plugin {
     // Paranoid security.
     this.enemiesGroup.removeAll();
     this.enemiesGroup.alpha = 1;
-    let wave = wavesData[Phaser.Math.wrap(this.current, 0, wavesData.length - 1)];
+    let wave = wavesData[Phaser.Math.wrap(this.current, 0, wavesData.length)];
     if (!wave) {
       console.error('Uhhhh.... no wave data!', wavesData);
       return;
