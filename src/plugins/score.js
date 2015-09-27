@@ -1,13 +1,10 @@
 'use strict';
 
-export default class Score extends Phaser.Plugin {
-  constructor(game, parent) {
-    super(game, parent);
+export default class Score {
+  constructor(game) {
+    this.game = game;
     game.score = this;
     this.current = 0;
-  }
-
-  init() {
     this.scoreText = this.game.add.bitmapText(360, 20, 'computerPixelFont', '0', 40);
     this.scoreText.anchor.setTo(1, 0.3);
     this.scoreText.align = 'right';

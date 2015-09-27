@@ -8,18 +8,15 @@ import Assassin from '../sprites/assassin';
 
 let wavesData = yaml.safeLoad(fs.readFileSync(__dirname + '/wavesData.yaml', 'utf8'));
 
-export default class Waves extends Phaser.Plugin {
-  constructor(game, parent) {
-    super(game, parent);
+export default class Waves {
+  constructor(game) {
+    this.game = game;
     game.waves = this;
 
     this.current = 0;
     this.loaded = false;
     this.transitioning = false;
     this.onTransition = new Phaser.Signal();
-  }
-
-  init() {
     this.enemiesGroup = this.game.enemiesGroup = this.game.add.group();
     this.waveIndicator = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY - 90, 'computerPixelFont', 'Wave 1', 40);
     this.waveIndicator.anchor.setTo(0.5, 0);

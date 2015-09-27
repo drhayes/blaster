@@ -7,18 +7,16 @@ const SPAWN_TIME_MS = 2000;
 const SPAWN_DURATION_MS = 2000;
 const SPAWN_SOUND_DURATION_MS = 890;
 
-export default class Spawn extends Phaser.Plugin {
-  constructor(game, parent) {
-    super(game, parent);
+export default class Spawn {
+  constructor(game) {
+    this.game = game;
     game.spawn = this;
+    game.player = null;
     this.spawnEvent = null;
     this.spawning = false;
     this.spawnSound = this.game.add.audio('playerSpawn');
     this.lives = NUM_LIVES;
     this.onGameOver = new Phaser.Signal();
-  }
-
-  init() {
     this.playerImage = game.add.image(this.game.world.centerX, this.game.world.centerY, 'player', 0);
     this.playerImage.anchor.set(0.5);
     this.playerImage.visible = false;

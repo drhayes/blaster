@@ -10,12 +10,12 @@ import Player from '../sprites/player';
 
 export default class Main extends Phaser.State {
   create() {
-    this.game.plugins.add(Waves);
-    this.game.plugins.add(Tinting);
-    this.game.plugins.add(Shooting);
-    this.game.plugins.add(Explosions);
-    this.game.plugins.add(Spawn);
-    this.game.plugins.add(Score);
+    this.waves = new Waves(this.game);
+    this.tinting = new Tinting(this.game);
+    this.shooting = new Shooting(this.game);
+    this.explosions = new Explosions(this.game);
+    this.spawn = new Spawn(this.game);
+    this.score = new Score(this.game);
 
     this.back = this.game.add.tileSprite(0, 0, 691, 693, 'circuitry');
     this.back.width = 1280;
@@ -48,6 +48,11 @@ Press any key to continue`, 40);
   }
 
   update() {
+    this.waves.update();
+    this.shooting.update();
+    this.explosions.update();
+    this.spawn.update();
+
     let player = this.game.player;
     if (player && player.alive) {
       this.back.tilePosition.x = -player.x * 0.2;

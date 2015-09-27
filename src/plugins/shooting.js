@@ -7,17 +7,15 @@ import Spear from '../sprites/spear';
 const NUM_BULLETS = 50;
 const SOUND_DELAY = 60;
 
-export default class Shooting extends Phaser.Plugin {
-  constructor(game, parent) {
-    super(game, parent);
+export default class Shooting {
+  constructor(game) {
+    this.game = game;
     game.shooting = this;
     this.shootSound = game.add.audio('shoot');
     this.shootSoundDelay = 0;
     this.enforcerShootSound = game.add.audio('enforcerShoot');
     this.spearSound = game.add.audio('spearShoot');
-  }
 
-  init() {
     this.playerBullets = this.game.add.group();
     this.enforcerBullets = this.game.add.group();
     this.spears = this.game.add.group();

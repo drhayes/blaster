@@ -4,16 +4,15 @@ const NUM_EXPLOSIONS = 100;
 const EXPLOSION_LIFETIME_MS = 1000;
 const SOUND_DELAY = 60;
 
-export default class Explosions extends Phaser.Plugin {
-  constructor(game, parent) {
-    super(game, parent);
+export default class Explosions {
+  constructor(game) {
+    this.game = game;
     game.explosions = this;
+    
     this.smallBoom = game.add.audio('smallBoom');
     this.smallBoomDelay = 0;
     this.mediumBoom = game.add.audio('mediumBoom');
-  }
 
-  init() {
     let smallExplosions = this.game.add.emitter(0, 0, NUM_EXPLOSIONS);
     smallExplosions.makeParticles('player', 2);
     smallExplosions.setAlpha(1, 0, EXPLOSION_LIFETIME_MS, Phaser.Easing.Quadratic.Out);

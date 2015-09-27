@@ -1,8 +1,8 @@
 'use strict';
 
-export default class Tinting extends Phaser.Plugin {
-  constructor(game, parent) {
-    super(game, parent);
+export default class Tinting {
+  constructor(game) {
+    this.game = game;
     game.tinting = this;
     this.tints = [
       0xcb0404, // #cb0404
