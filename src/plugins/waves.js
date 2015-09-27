@@ -57,13 +57,13 @@ export default class Waves extends Phaser.Plugin {
       console.error('Uhhhh.... no wave data!', wavesData);
       return;
     }
-    for (let i = 0; i < wave.guards; i++) {
+    for (let i = 0; i < wave.g; i++) {
       this.enemiesGroup.add(new Guard(this.game, this.game.world.randomX, this.game.world.randomY));
     }
-    for (let i = 0; i < wave.enforcers; i++) {
+    for (let i = 0; i < wave.e; i++) {
       this.enemiesGroup.add(new Enforcer(this.game, this.game.world.randomX, this.game.world.randomY));
     }
-    for (let i = 0; i < wave.assassins; i++) {
+    for (let i = 0; i < wave.a; i++) {
       this.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
     }
     this.waveIndicator.text = `Wave ${this.current + 1}`;

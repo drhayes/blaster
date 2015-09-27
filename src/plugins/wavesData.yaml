@@ -1,11 +1,19 @@
 -
-  guards: 6
+  g: 6
 -
-  guards: 10
-  enforcers: 2
+  g: 8
+  e: 2
 -
-  guards: 12
-  enforcers: 4
+  g: 10
+  e: 4
 -
-  guards: 10
-  enforcers: 6
+  g: 8
+  e: 6
+-
+  g: 10
+  e: 6
+  a: 4
+-
+  g: 12
+  e: 8
+  a: 8
