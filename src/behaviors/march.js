@@ -3,7 +3,7 @@
 import Behavior from './behavior';
 
 const MAX_VEL = 200;
-const DRAG = 8000;
+// const DRAG = 8000;
 const SLEEP_TIME_MS = 200;
 const MOVE_TIME_MS = 200;
 const EPSILON = 20;
@@ -11,16 +11,20 @@ const EPSILON = 20;
 export default class March extends Behavior {
   constructor() {
     super()
-    this.moveTime = 0;
+    this.moveTime = Math.random() * MOVE_TIME_MS;
     this.sleepTime = 0;
   }
 
-  add(entity) {
-    entity.body.maxVelocity.set(MAX_VEL);
-    entity.body.drag.setTo(DRAG);
+  added(entity) {
+    // entity.body.maxVelocity.set(MAX_VEL);
+    // entity.body.drag.setTo(DRAG);
+    this.marchSound = entity.game.add.audio('march');
   }
 
   update(entity) {
+    if (!entity.alive) {
+      return;
+    }
     let player = entity.game.player;
     if (!player || !player.alive) {
       entity.body.velocity.set(0);
@@ -31,6 +35,7 @@ export default class March extends Behavior {
 
     if (this.moveTime <= 0 && this.sleepTime <= 0) {
       this.moveTime = MOVE_TIME_MS + Math.random() * MOVE_TIME_MS;
+      this.marchSound.play();
     }
     this.moveTime -= entity.game.time.physicsElapsedMS;
     this.sleepTime -= entity.game.time.physicsElapsedMS;
