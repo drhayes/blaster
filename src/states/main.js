@@ -32,11 +32,15 @@ export default class Main extends Phaser.State {
       this.back.tint = this.game.tinting.currentTint;
     });
     this.game.spawn.onGameOver.addOnce(() => {
-      let gameOverText = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY, 'computerPixelFont', `GAME OVER
-Press any key to continue`, 40);
-      gameOverText.anchor.setTo(0.5, 0.5);
+      let gameOverText = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY, 'computerPixelFont',
+      'GAME OVER', 40);
+      gameOverText.anchor.setTo(0.5, 0);
       gameOverText.align = 'center';
-      this.game.input.keyboard.addCallbacks(this, null, null, this.onKeyPress);
+      this.game.time.events.add(3000, () => {
+        gameOverText.text = `GAME OVER
+Press any key to continue`;
+        this.game.input.keyboard.addCallbacks(this, null, null, this.onKeyPress);
+      })
     });
   }
 
