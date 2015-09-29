@@ -7,6 +7,7 @@ import Tinting from '../plugins/tinting';
 import Score from '../plugins/score';
 import Waves from '../plugins/waves';
 import Player from '../sprites/player';
+import tracking from '../tracking';
 
 export default class Main extends Phaser.State {
   create() {
@@ -42,6 +43,8 @@ Press any key to continue`;
         this.game.input.keyboard.addCallbacks(this, null, null, this.onKeyPress);
       })
     });
+
+    tracking.startGame();
   }
 
   onKeyPress() {

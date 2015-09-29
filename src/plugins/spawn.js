@@ -1,6 +1,7 @@
 'use strict';
 
 import Player from '../sprites/player';
+import tracking from '../tracking';
 
 const NUM_LIVES = 5;
 const SPAWN_TIME_MS = 2000;
@@ -64,6 +65,7 @@ export default class Spawn {
 
   die() {
     this.lives -= 1;
+    tracking.died(this.game.waves.current, this.lives);
   }
 
   spawn() {

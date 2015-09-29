@@ -1,5 +1,7 @@
 'use strict';
 
+import tracking from '../tracking';
+
 export default class MainMenu extends Phaser.State {
   makeText(y, text, size) {
     size = size || 40;
@@ -8,6 +10,7 @@ export default class MainMenu extends Phaser.State {
     textThing.align = 'center';
     return textThing;
   }
+
   create() {
     this.titleText = this.makeText(50, 'BLASTER');
     this.instructionsText = this.makeText(200, `WASD to move
@@ -31,6 +34,8 @@ IJKL to shoot`);
 
     this.x = -0.1;
     this.y = 0;
+
+    tracking.mainMenu();
   }
 
   onKeyPress() {

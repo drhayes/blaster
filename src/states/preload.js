@@ -1,5 +1,7 @@
 'use strict';
 
+import tracking from '../tracking';
+
 export default class Preload extends Phaser.State {
   preload() {
     this.barBg = this.game.add.sprite(game.world.centerX, game.world.centerY, 'loading-bg');
@@ -21,9 +23,14 @@ export default class Preload extends Phaser.State {
     this.game.load.audio('enforcerShoot', 'media/sounds/enforcerShoot.mp3');
     this.game.load.audio('spearShoot', 'media/sounds/spear.mp3');
     this.game.load.audio('march', 'media/sounds/march.mp3');
+
+    tracking.startPreload();
+    this.startTime = Date.now();
   }
 
   create() {
+    let totalTime = Date.now() - this.startTime;
+    tracking.finishPreload(totalTime);
     this.game.state.start('mainMenu', true, false);
   }
 };
