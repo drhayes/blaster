@@ -4,6 +4,7 @@ var Boot = require('./states/boot');
 var Preload = require('./states/preload');
 var MainMenu = require('./states/mainMenu');
 var Main = require('./states/main');
+import tracking from './tracking';
 
 var game = window.game = new Phaser.Game({
   width: 1280,
@@ -17,7 +18,3 @@ var game = window.game = new Phaser.Game({
 game.state.add('preload', new Preload());
 game.state.add('mainMenu', new MainMenu());
 game.state.add('main', new Main());
-
-// Ugh.
-game.onTake = new Phaser.Signal();
-game.onRestore = new Phaser.Signal();
