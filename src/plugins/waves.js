@@ -5,6 +5,7 @@ var yaml = require('js-yaml');
 import Guard from '../sprites/guard';
 import Enforcer from '../sprites/enforcer';
 import Assassin from '../sprites/assassin';
+import tracking from '../tracking';
 
 let wavesData = yaml.safeLoad(fs.readFileSync(__dirname + '/wavesData.yaml', 'utf8'));
 
@@ -71,6 +72,8 @@ Get ready!`;
       this.game.time.events.add(2750, () => {
         this.waveIndicator.visible = false;
       })
-    })
+    });
+
+    tracking.newWave(this.current);
   }
 };

@@ -24,6 +24,12 @@ var tracking = {
       wave: wave,
       livesLeft: livesLeft
     });
+  },
+
+  newWave(wave) {
+    mixpanel.track('New wave', {
+      wave: wave
+    });
   }
 };
 
