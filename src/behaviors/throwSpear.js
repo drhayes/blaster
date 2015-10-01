@@ -10,6 +10,11 @@ export default class ShootPlayer extends Behavior {
     super();
     this.shootTimer = 0;
     this.angleForShoot = new Phaser.Point(0, 0);
+    this.warned = false;
+  }
+
+  added(entity) {
+    this.currentTint = entity.tint;
   }
 
   update(entity) {
@@ -22,8 +27,16 @@ export default class ShootPlayer extends Behavior {
       this.shootTimer = SHOOT_TIMER_MS + Math.random() * SHOOT_TIMER_MS;
       return;
     }
+    // The length of the "spearWarn" sound in MS.
+    if (this.shootTimer <= 906 && !this.warned) {
+      entity.tint = 0xffffff;
+      entity.game.shooting.spearWarn();
+      this.warned = true;
+    }
     if (this.shootTimer <= 0) {
       this.shootTimer = SHOOT_TIMER_MS + Math.random() * SHOOT_TIMER_MS;
+      this.warned = false;
+      entity.tint = this.currentTint;
       // First shot.
       this.angleForShoot.set(player.x - entity.x, player.y - entity.y);
       Phaser.Point.normalize(this.angleForShoot, this.angleForShoot);

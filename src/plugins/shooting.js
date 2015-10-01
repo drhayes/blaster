@@ -15,6 +15,7 @@ export default class Shooting {
     this.shootSoundDelay = 0;
     this.enforcerShootSound = game.add.audio('enforcerShoot');
     this.spearSound = game.add.audio('spearShoot');
+    this.spearWarnSound = game.add.audio('spearWarn');
 
     this.playerBullets = this.game.add.group();
     this.enforcerBullets = this.game.add.group();
@@ -62,6 +63,10 @@ export default class Shooting {
       bullet.fire(vx, vy);
       this.enforcerShootSound.play();
     }
+  }
+
+  spearWarn() {
+    this.spearWarnSound.play();
   }
 
   throwSpear(sx, sy, vx, vy) {
