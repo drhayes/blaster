@@ -24,5 +24,3 @@ export default class Enforcer extends Enemy {
     this.score = 500;
   }
 };
-
-Enforcer.score = Symbol('Enforcer');

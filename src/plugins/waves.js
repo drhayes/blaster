@@ -5,6 +5,7 @@ var yaml = require('js-yaml');
 import Guard from '../sprites/guard';
 import Enforcer from '../sprites/enforcer';
 import Assassin from '../sprites/assassin';
+import Hulk from '../sprites/hulk';
 import tracking from '../tracking';
 
 let wavesData = yaml.safeLoad(fs.readFileSync(__dirname + '/wavesData.yaml', 'utf8'));
@@ -63,6 +64,9 @@ export default class Waves {
     }
     for (let i = 0; i < wave.a; i++) {
       this.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
+    }
+    for (let i = 0; i < wave.h; i++) {
+      this.enemiesGroup.add(new Hulk(this.game, this.game.world.randomX, this.game.world.randomY));
     }
     this.waveIndicator.text = `Wave ${this.current + 1}`;
     this.waveIndicator.visible = true;

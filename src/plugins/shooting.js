@@ -91,8 +91,8 @@ export default class Shooting {
 
   onOverlap(enemy, bullet) {
     this.game.explosions.small(bullet.x, bullet.y);
-    enemy.position.x -= enemy.body.overlapX / 2;
-    enemy.position.y -= enemy.body.overlapY / 2;
+    enemy.position.x -= enemy.body.overlapX * enemy.knockback;
+    enemy.position.y -= enemy.body.overlapY * enemy.knockback;
     enemy.damage(bullet.attack);
     bullet.kill();
   }
