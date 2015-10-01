@@ -25,6 +25,7 @@ export default class ShootPlayer extends Behavior {
     let player = entity.game.player;
     if (!player || !player.alive) {
       this.shootTimer = SHOOT_TIMER_MS + Math.random() * SHOOT_TIMER_MS;
+      entity.tint = this.currentTint;
       return;
     }
     // The length of the "spearWarn" sound in MS.
