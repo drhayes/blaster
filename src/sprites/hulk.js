@@ -15,7 +15,11 @@ export default class Hulk extends Enemy {
     this.body.bounce.set(0.1);
     this.knockback = 0.2;
 
+    // This doesn't matter because hulks don't take damage.
     this.health = 150;
     this.score = 1750;
   }
+
+  // Spooky! Hulks take no damage.
+  damage() {}
 };

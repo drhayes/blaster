@@ -20,6 +20,7 @@ export default class Waves {
     this.transitioning = false;
     this.onTransition = new Phaser.Signal();
     this.enemiesGroup = this.game.enemiesGroup = this.game.add.group();
+    this.hulkGroup = this.game.hulkGroup = this.game.add.group();
     this.waveIndicator = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY - 90, 'computerPixelFont', 'Wave 1', 40);
     this.waveIndicator.anchor.setTo(0.5, 0);
     this.waveIndicator.align = 'center';
@@ -50,7 +51,9 @@ export default class Waves {
     this.loaded = true;
     // Paranoid security.
     this.enemiesGroup.removeAll();
+    this.hulkGroup.removeAll();
     this.enemiesGroup.alpha = 1;
+    this.hulkGroup.alpha = 1;
     let wave = wavesData[Phaser.Math.wrap(this.current, 0, wavesData.length)];
     if (!wave) {
       console.error('Uhhhh.... no wave data!', wavesData);
@@ -66,7 +69,7 @@ export default class Waves {
       this.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
     }
     for (let i = 0; i < wave.h; i++) {
-      this.enemiesGroup.add(new Hulk(this.game, this.game.world.randomX, this.game.world.randomY));
+      this.hulkGroup.add(new Hulk(this.game, this.game.world.randomX, this.game.world.randomY));
     }
     this.waveIndicator.text = `Wave ${this.current + 1}`;
     this.waveIndicator.visible = true;
