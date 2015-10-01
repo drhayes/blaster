@@ -34,6 +34,7 @@ export default class Waves {
     let player = this.game.player;
     if (player) {
       this.game.physics.arcade.collide(player, this.enemiesGroup, player.onCollide, null, player);
+      this.game.physics.arcade.collide(player, this.hulkGroup, player.onCollide, null, player);
     }
     if (!this.enemiesGroup.getFirstAlive() && this.loaded && !this.transitioning) {
       this.transitioning = true;

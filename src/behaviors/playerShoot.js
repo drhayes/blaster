@@ -55,8 +55,8 @@ export default class PlayerShoot extends Behavior {
     if (shootX || shootY) {
       // Compute angle for shot.
       this.angleForShoot.set(shootX, shootY);
-      Phaser.Point.normalize(this.angleForShoot, this.angleForShoot);
-      Phaser.Point.rotate(this.angleForShoot, 0, 0, Math.random() * BULLET_WAVER_DEGREES - HALF_WAVER, true);
+      this.angleForShoot.normalize();
+      this.angleForShoot.rotate(0, 0, Math.random() * BULLET_WAVER_DEGREES - HALF_WAVER, true);
       player.game.shooting.playerShoot(player.x, player.y, this.angleForShoot.x, this.angleForShoot.y);
     }
   }

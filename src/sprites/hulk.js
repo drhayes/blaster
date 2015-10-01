@@ -1,12 +1,14 @@
 'use strict';
 
 import Enemy from './enemy';
+import HulkMarch from '../behaviors/hulkMarch';
 import FleeCenter from '../behaviors/fleeCenter';
 
 export default class Hulk extends Enemy {
   constructor(game, x, y) {
     super(game, x, y, 'player', 7);
 
+    this.addBehavior(new HulkMarch());
     this.addBehavior(new FleeCenter());
 
     this.anchor.set(0.5, 0.5);
