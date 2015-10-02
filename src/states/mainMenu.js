@@ -24,6 +24,7 @@ export default class MainMenu extends Phaser.State {
     this.logo.scale.set(2.3);
 
     this.alphaText = this.makeText(310, 'alpha');
+    this.instructionsText = this.makeText(360, 'WASD to move, IJKL to shoot');
 
     this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY, 'New Game', () => {
       this.game.state.start('main');
