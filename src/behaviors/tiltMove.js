@@ -6,7 +6,7 @@ const ANGLE_RATIO = 0.05;
 
 export default class TiltMove extends Behavior {
   constructor() {
-    super()
+    super();
   }
 
   update(entity) {

@@ -5,10 +5,6 @@ import TiltMove from '../behaviors/tiltMove';
 import March from '../behaviors/march';
 import FleeCenter from '../behaviors/fleeCenter';
 
-const NUM_STEPS = 5;
-const STEP_LIFETIME_MS = 1600;
-const STEP_FREQUENCY_MS = 500;
-
 export default class Guard extends Enemy {
   constructor(game, x, y) {
     super(game, x, y, 'player', 0);
@@ -25,4 +21,4 @@ export default class Guard extends Enemy {
     this.health = 30;
     this.score = 200;
   }
-};
+}

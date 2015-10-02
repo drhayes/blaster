@@ -36,4 +36,4 @@ export default class EnforcerBullet extends Phaser.Sprite {
     super.kill();
     this.game.time.events.remove(this.killEvent);
   }
-};
+}

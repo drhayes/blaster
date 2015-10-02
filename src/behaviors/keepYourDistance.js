@@ -37,4 +37,4 @@ export default class KeepYourDistance extends Behavior {
     entity.body.velocity.x = this.angleForMove.x;
     entity.body.velocity.y = this.angleForMove.y;
   }
-};
+}

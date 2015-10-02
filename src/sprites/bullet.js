@@ -38,4 +38,4 @@ export default class Bullet extends Phaser.Sprite {
     super.kill();
     this.game.time.events.remove(this.killEvent);
   }
-};
+}

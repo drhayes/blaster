@@ -10,10 +10,10 @@ export default class Intro extends Phaser.State {
   }
 
   create() {
-    this.mediumBoom = game.add.audio('mediumBoom');
+    this.mediumBoom = this.game.add.audio('mediumBoom');
     this.game.time.events.add(800, () => {
       this.mediumBoom.play();
-    })
+    });
     this.back = this.game.add.tileSprite(0, 0, 691, 693, 'circuitry');
     this.back.width = 1280;
     this.back.height = 960;
@@ -39,4 +39,4 @@ export default class Intro extends Phaser.State {
       y: 2.3
     }, 2000, Phaser.Easing.Bounce.Out, true);
   }
-};
+}

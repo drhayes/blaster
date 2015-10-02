@@ -84,4 +84,4 @@ export default class Spawn {
     this.game.player.reset(this.game.world.centerX, this.game.world.centerY);
     this.spawnEvent = null;
   }
-};
+}

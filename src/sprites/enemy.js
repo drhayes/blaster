@@ -36,4 +36,4 @@ export default class Enemy extends Phaser.Sprite {
   update() {
     this.behave('update');
   }
-};
+}

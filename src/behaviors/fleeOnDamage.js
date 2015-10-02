@@ -2,8 +2,6 @@
 
 import Behavior from './behavior';
 
-const VELOCITY = 100;
-
 export default class FleeOnDamage extends Behavior {
   constructor() {
     super();
@@ -30,4 +28,4 @@ export default class FleeOnDamage extends Behavior {
     entity.body.velocity.x = this.angleForMove.x;
     entity.body.velocity.y = this.angleForMove.y;
   }
-};
+}

@@ -2,13 +2,13 @@
 
 var tracking = {
   startPreload() {
-    mixpanel.track('Start preload')
+    mixpanel.track('Start preload');
   },
 
   finishPreload(totalTime) {
     mixpanel.track('Finish preload', {
       totalTimeMS: totalTime
-    })
+    });
   },
 
   mainMenu() {

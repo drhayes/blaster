@@ -5,7 +5,6 @@ var Preload = require('./states/preload');
 var Intro = require('./states/intro');
 var MainMenu = require('./states/mainMenu');
 var Main = require('./states/main');
-import tracking from './tracking';
 
 var game = window.game = new Phaser.Game({
   width: 1280,

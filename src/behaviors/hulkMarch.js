@@ -6,7 +6,7 @@ const VELOCITY = 30;
 
 export default class HulkMarch extends Behavior {
   constructor() {
-    super()
+    super();
     this.vector = new Phaser.Point(0, 0);
   }
 
@@ -14,7 +14,6 @@ export default class HulkMarch extends Behavior {
     let player = entity.game.player;
     if (player && player.alive && Math.random() < 0.02) {
       this.vector.setTo(player.x - entity.x, player.y - entity.y);
-      let chance = Math.random();
       if (Math.random() < 0.5) {
         this.vector.x = 0;
       } else {

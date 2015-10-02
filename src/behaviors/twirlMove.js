@@ -16,4 +16,4 @@ export default class TwirlMove extends Behavior {
     rotationFactor = Math.max(rotationFactor, 0.1);
     entity.angle += rotationFactor * entity.game.time.physicsElapsedMS;
   }
-};
+}

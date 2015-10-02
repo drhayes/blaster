@@ -34,7 +34,7 @@ export default class FleeCenter extends Behavior {
     // I mean, I'm glad you're happy to be in the center but you can't stay. sta
     if (this.angleForMove.x === 0 && this.angleForMove.y === 0) {
       this.angleForMove.x = Math.random() * 10 + 2;
-      this.angleForMove.y = Math.random() * 10 + 2
+      this.angleForMove.y = Math.random() * 10 + 2;
     }
     this.angleForMove.normalize();
     this.angleForMove.rotate(0, 0, 180, true);
@@ -42,4 +42,4 @@ export default class FleeCenter extends Behavior {
     entity.body.velocity.x = this.angleForMove.x;
     entity.body.velocity.y = this.angleForMove.y;
   }
-};
+}

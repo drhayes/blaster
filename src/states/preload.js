@@ -4,10 +4,10 @@ import tracking from '../tracking';
 
 export default class Preload extends Phaser.State {
   preload() {
-    this.barBg = this.game.add.sprite(game.world.centerX, game.world.centerY, 'loading-bg');
+    this.barBg = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loading-bg');
     this.barBg.anchor.setTo(0.5, 0.5);
     // This bar will get cropped by the setPreloadSprite function as the game loads!
-    this.bar = this.game.add.sprite(game.world.centerX, game.world.centerY, 'loading-fg');
+    this.bar = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'loading-fg');
     this.bar.anchor.setTo(0.5, 0.5);
     this.game.load.setPreloadSprite(this.bar);
 
@@ -38,4 +38,4 @@ export default class Preload extends Phaser.State {
     tracking.finishPreload(totalTime);
     this.game.state.start('intro', true, false);
   }
-};
+}

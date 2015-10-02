@@ -1,7 +1,5 @@
 'use strict';
 
-var fs = require('fs');
-
 export default class Boot extends Phaser.State {
   preload() {
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -17,4 +15,4 @@ export default class Boot extends Phaser.State {
   create() {
     this.game.state.start('preload');
   }
-};
+}

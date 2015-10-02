@@ -27,4 +27,4 @@ export default class BlasterButton extends Phaser.Button {
       this.alpha = 0.5;
     });
   }
-};
+}

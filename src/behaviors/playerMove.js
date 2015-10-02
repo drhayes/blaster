@@ -61,4 +61,4 @@ export default class PlayerMove extends Behavior {
     body.acceleration.x = accelX;
     body.acceleration.y = accelY;
   }
-};
+}

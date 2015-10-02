@@ -7,8 +7,8 @@ const BULLET_WAVER_DEGREES = 5;
 const HALF_WAVER = BULLET_WAVER_DEGREES / 2;
 
 export default class PlayerShoot extends Behavior {
-  constructor(pool) {
-    super()
+  constructor() {
+    super();
     this.pad = null;
     this.up = this.down = this.left = this.right = null;
     this.angleForShoot = new Phaser.Point(0, 0);
@@ -60,4 +60,4 @@ export default class PlayerShoot extends Behavior {
       player.game.shooting.playerShoot(player.x, player.y, this.angleForShoot.x, this.angleForShoot.y);
     }
   }
-};
+}

@@ -23,4 +23,4 @@ export default class Enforcer extends Enemy {
     this.health = 20;
     this.score = 500;
   }
-};
+}

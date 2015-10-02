@@ -35,4 +35,4 @@ export default class Player extends Phaser.Sprite {
   onCollide(player, other) {
     this.behave('onCollide', other);
   }
-};
+}

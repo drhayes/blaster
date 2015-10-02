@@ -45,7 +45,7 @@ export default class Waves {
         this.loaded = false;
         this.transitioning = false;
         this.onTransition.dispatch();
-      })
+      });
     }
   }
 
@@ -80,9 +80,9 @@ export default class Waves {
 Get ready!`;
       this.game.time.events.add(2750, () => {
         this.waveIndicator.visible = false;
-      })
+      });
     });
 
     tracking.newWave(this.current);
   }
-};
+}

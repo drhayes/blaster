@@ -9,7 +9,7 @@ const EPSILON = 20;
 
 export default class March extends Behavior {
   constructor() {
-    super()
+    super();
     this.moveTime = Math.random() * MOVE_TIME_MS;
     this.sleepTime = 0;
   }
@@ -58,4 +58,4 @@ export default class March extends Behavior {
     entity.body.velocity.x = velX;
     entity.body.velocity.y = velY;
   }
-};
+}

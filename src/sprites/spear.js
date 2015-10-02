@@ -37,4 +37,4 @@ export default class Spear extends Phaser.Sprite {
     super.kill();
     this.game.time.events.remove(this.killEvent);
   }
-};
+}

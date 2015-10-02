@@ -10,7 +10,7 @@ function removeAllBehaviors(sprite) {
   for (var i = sprite.behaviors.length - 1; i >= 0; i--) {
     var behavior = sprite.behaviors[i];
     behavior.removed(sprite);
-  };
+  }
   sprite.behaviors.length = 0;
 }
 

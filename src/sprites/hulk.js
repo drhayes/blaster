@@ -24,4 +24,4 @@ export default class Hulk extends Enemy {
 
   // Spooky! Hulks take no damage.
   damage() {}
-};
+}

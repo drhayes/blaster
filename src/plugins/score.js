@@ -29,4 +29,4 @@ export default class Score {
     this.current += thing.score;
     this.updateScore();
   }
-};
+}

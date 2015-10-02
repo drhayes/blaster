@@ -24,4 +24,4 @@ export default class Assassin extends Enemy {
     this.health = 10;
     this.score = 1000;
   }
-};
+}

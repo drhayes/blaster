@@ -35,4 +35,4 @@ export default class OrbitPlayer extends Behavior {
     entity.body.acceleration.x = accelX;
     entity.body.acceleration.y = accelY;
   }
-};
+}

@@ -1,7 +1,6 @@
 'use strict';
 
 import Behavior from './behavior';
-import Spear from '../sprites/spear';
 
 const SHOOT_TIMER_MS = 5000;
 
@@ -44,4 +43,4 @@ export default class ShootPlayer extends Behavior {
       entity.game.shooting.throwSpear(entity.x, entity.y, this.angleForShoot.x, this.angleForShoot.y);
     }
   }
-};
+}

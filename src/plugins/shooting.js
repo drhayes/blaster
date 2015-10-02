@@ -23,7 +23,7 @@ export default class Shooting {
     for (let x = 0; x < NUM_BULLETS; x++) {
       let bullet = new Bullet(this.game, 0, 0);
       bullet.alive = bullet.exists = bullet.visible = false;
-      this.playerBullets.add(bullet)
+      this.playerBullets.add(bullet);
 
       let enforcerBullet = new EnforcerBullet(this.game, 0, 0);
       enforcerBullet.alive = enforcerBullet.exists = enforcerBullet.visible = false;
@@ -103,4 +103,4 @@ export default class Shooting {
     player.onCollide(player, bullet);
     bullet.kill();
   }
-};
+}

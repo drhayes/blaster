@@ -8,7 +8,7 @@ export default class Explosions {
   constructor(game) {
     this.game = game;
     game.explosions = this;
-    
+
     this.smallBoom = game.add.audio('smallBoom');
     this.smallBoomDelay = 0;
     this.mediumBoom = game.add.audio('mediumBoom');
@@ -74,4 +74,4 @@ export default class Explosions {
     this.bits(x, y);
     this.mediumBoom.play();
   }
-};
+}
