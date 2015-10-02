@@ -7,7 +7,7 @@ const SHOOT_TIMER_MS = 5000;
 export default class ShootPlayer extends Behavior {
   constructor() {
     super();
-    this.shootTimer = 0;
+    this.shootTimer = SHOOT_TIMER_MS + Math.random() * SHOOT_TIMER_MS;
     this.angleForShoot = new Phaser.Point(0, 0);
     this.warned = false;
   }
