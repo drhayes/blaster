@@ -1,6 +1,6 @@
 'use strict';
 
-const EXTRA_LIFE = 7500;
+const EXTRA_LIFE = 10 * 1000;
 const NUM_SCORES = 10;
 
 export default class Score {
