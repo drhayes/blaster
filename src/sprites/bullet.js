@@ -13,7 +13,6 @@ export default class Bullet extends Phaser.Sprite {
     this.anchor.setTo(0.5);
     this.body.width = 4;
     this.body.height = 2;
-    this.body.collideWorldBounds = true;
     this.tint = 0x4682b4;
 
     this.attack = 2;

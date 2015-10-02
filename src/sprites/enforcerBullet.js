@@ -13,7 +13,6 @@ export default class EnforcerBullet extends Phaser.Sprite {
     this.anchor.setTo(0.5);
     this.body.width = 4;
     this.body.height = 4;
-    this.body.collideWorldBounds = true;
     this.tint = game.tinting.currentTint;
 
     let glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
