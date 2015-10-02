@@ -38,7 +38,7 @@ IJKL to shoot`);
   onKeyPress() {
     this.game.input.keyboard.onPressCallback = null;
     this.game.input.keyboard.reset(true);
-    this.game.state.start('main', true, false);
+    this.game.state.start('main');
   }
 
   update() {
@@ -53,6 +53,6 @@ IJKL to shoot`);
         this.x = Math.random() < 0.5 ? 0.1 : -0.1;
       }
     }
-    this.logo.tint = Math.random() * 0xffffff;
+    // this.logo.tint = Math.random() * 0xffffff;
   }
 };

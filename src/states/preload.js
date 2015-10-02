@@ -34,6 +34,6 @@ export default class Preload extends Phaser.State {
   create() {
     let totalTime = Date.now() - this.startTime;
     tracking.finishPreload(totalTime);
-    this.game.state.start('mainMenu', true, false);
+    this.game.state.start('intro', true, false);
   }
 };
