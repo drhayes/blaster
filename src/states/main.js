@@ -24,6 +24,7 @@ export default class Main extends Phaser.State {
     this.back.fixedToCamera = true;
     this.back.alpha = 0.2;
     this.back.tint = this.game.tinting.currentTint;
+    this.game.world.sendToBack(this.back);
     // Starting position for player.
     this.back.tilePosition.x = -this.game.world.centerX * 0.2;
     this.back.tilePosition.y = -this.game.world.centerY * 0.2;

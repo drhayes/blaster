@@ -25,6 +25,7 @@ export default class Waves {
     this.waveIndicator.anchor.setTo(0.5, 0);
     this.waveIndicator.align = 'center';
     this.waveIndicator.visible = false;
+    this.game.world.bringToTop(this.waveIndicator);
   }
 
   update() {

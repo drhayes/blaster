@@ -12,23 +12,21 @@ export default class MainMenu extends Phaser.State {
   }
 
   create() {
-    this.titleText = this.makeText(50, 'BLASTER');
-    this.instructionsText = this.makeText(200, `WASD to move
-IJKL to shoot`);
-    this.pressAnyKeyText = this.makeText(this.game.world.centerY, 'Press any key to begin');
-    this.knowYourEnemy = this.makeText(670, 'Know your enemy');
-    this.enemy = this.makeText(700, 'GUARD    ENFORCER   ASSASSIN   ???');
-
-    this.guard = this.game.add.image(445, 720, 'player', 0);
-    this.enforcer = this.game.add.image(591, 739, 'player', 3);
-    this.enforcer.anchor.set(0.5, 0.6);
-    this.assassin = this.game.add.image(710, 720, 'player', 5);
-
     this.back = this.game.add.tileSprite(0, 0, 691, 693, 'circuitry');
     this.back.width = 1280;
     this.back.height = 960;
     this.back.fixedToCamera = true;
-    this.back.alpha = 0.2;
+    this.back.alpha = 0.1;
+
+    this.logo = this.game.add.image(this.game.world.centerX, 50, 'blasterLogo');
+    this.logo.anchor.setTo(0.5, 0);
+    this.logo.scale.set(2.3);
+
+    this.alphaText = this.makeText(310, 'alpha');
+
+    this.pressAnyKeyText = this.makeText(this.game.world.centerY, 'Press any key to begin');
+    this.instructionsText = this.makeText(this.game.world.centerY + 100, `WASD to move
+IJKL to shoot`);
 
     this.game.input.keyboard.addCallbacks(this, null, null, this.onKeyPress);
 
@@ -56,7 +54,6 @@ IJKL to shoot`);
         this.x = Math.random() < 0.5 ? 0.1 : -0.1;
       }
     }
-    this.titleText.tint = Math.random() * 0xffffff;
-    this.enforcer.angle += 0.1 * this.game.time.physicsElapsedMS;
+    this.logo.tint = Math.random() * 0xffffff;
   }
 };

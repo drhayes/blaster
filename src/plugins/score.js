@@ -8,6 +8,7 @@ export default class Score {
     this.scoreText = this.game.add.bitmapText(360, 20, 'computerPixelFont', '0', 40);
     this.scoreText.anchor.setTo(1, 0.3);
     this.scoreText.align = 'right';
+    this.game.world.bringToTop(this.scoreText);
     this.updateScore();
   }
 
