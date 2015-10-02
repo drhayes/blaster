@@ -29,6 +29,9 @@ export default class Player extends Phaser.Sprite {
   }
 
   update() {
+    if (!this.alive) {
+      return;
+    }
     this.behave('update');
   }
 

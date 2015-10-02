@@ -22,8 +22,8 @@ export default class Score {
 
   killed(thing) {
     if (this.current % EXTRA_LIFE > (this.current + thing.score) % EXTRA_LIFE) {
-      this.game.spawn.lives++;
-      this.game.spawn.updateLivesImage();
+      this.game.lives.lives++;
+      this.game.lives.updateLivesImage();
       this.extraLifeSound.play();
     }
     this.current += thing.score;

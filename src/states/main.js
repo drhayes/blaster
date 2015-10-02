@@ -6,10 +6,12 @@ import Spawn from '../plugins/spawn';
 import Tinting from '../plugins/tinting';
 import Score from '../plugins/score';
 import Waves from '../plugins/waves';
+import Lives from '../plugins/lives';
 import tracking from '../tracking';
 
 export default class Main extends Phaser.State {
   create() {
+    this.lives = new Lives(this.game);
     this.waves = new Waves(this.game);
     this.tinting = new Tinting(this.game);
     this.shooting = new Shooting(this.game);
@@ -32,7 +34,7 @@ export default class Main extends Phaser.State {
       this.back.tilePosition.y = -this.game.world.centerY * 0.2;
       this.back.tint = this.game.tinting.currentTint;
     });
-    this.game.spawn.onGameOver.addOnce(() => {
+    this.game.lives.onGameOver.addOnce(() => {
       let gameOverText = this.game.add.bitmapText(this.game.world.centerX, this.game.world.centerY, 'computerPixelFont',
       'GAME OVER', 40);
       gameOverText.anchor.setTo(0.5, 0);
@@ -58,7 +60,7 @@ Press any key to continue`;
     this.waves.update();
     this.shooting.update();
     this.explosions.update();
-    this.spawn.update();
+    this.lives.update();
 
     let player = this.game.player;
     if (player && player.alive) {

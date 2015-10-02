@@ -10,6 +10,6 @@ export default class TouchAndDie extends Behavior {
   onCollide(entity) {
     entity.game.explosions.medium(entity.x, entity.y);
     entity.kill();
-    entity.game.spawn.die();
+    entity.game.lives.die();
   }
 }

@@ -40,7 +40,7 @@ export default class Waves {
     if (!this.enemiesGroup.getFirstAlive() && this.loaded && !this.transitioning) {
       this.transitioning = true;
       this.game.time.events.add(1000, () => {
-        this.game.player.kill();
+        // this.game.player.kill();
         this.current += 1;
         this.loaded = false;
         this.transitioning = false;
