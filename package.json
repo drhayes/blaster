@@ -5,6 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "wzrd src/game.js:game.js -p 8080 -- -d",
+    "lint": "eslint src/",
     "predeploy": "rm -rf dist && mkdir -p dist/vendor",
     "deploy": "cp index.html dist && cp vendor/phaser.min.js dist/vendor && browserify src/game.js -o dist/game.js && cp -R media dist/media && divshot push"
   },
@@ -16,9 +17,11 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/drhayes/blaster",
   "devDependencies": {
+    "babel-eslint": "^4.1.3",
     "babelify": "^6.3.0",
     "brfs": "^1.4.1",
     "browserify": "^11.1.0",
+    "eslint": "^1.5.1",
     "js-yaml": "^3.4.2",
     "wzrd": "^1.3.1"
   },
