@@ -23,7 +23,6 @@ export default class MainMenu extends Phaser.State {
     this.logo.scale.set(2.3);
 
     this.alphaText = this.makeText(310, 'alpha');
-
     this.pressAnyKeyText = this.makeText(this.game.world.centerY, 'Press any key to begin');
     this.instructionsText = this.makeText(this.game.world.centerY + 100, `WASD to move
 IJKL to shoot`);
