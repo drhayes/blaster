@@ -5,8 +5,6 @@ import tracking from '../tracking';
 
 const NUM_LIVES = 5;
 const SPAWN_TIME_MS = 2000;
-const SPAWN_DURATION_MS = 2000;
-const SPAWN_SOUND_DURATION_MS = 890;
 
 export default class Lives {
   constructor(game) {
