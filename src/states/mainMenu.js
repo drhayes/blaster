@@ -1,6 +1,7 @@
 'use strict';
 
 import tracking from '../tracking';
+import BlasterButton from '../sprites/blasterButton';
 
 export default class MainMenu extends Phaser.State {
   makeText(y, text, size) {
@@ -23,22 +24,15 @@ export default class MainMenu extends Phaser.State {
     this.logo.scale.set(2.3);
 
     this.alphaText = this.makeText(310, 'alpha');
-    this.pressAnyKeyText = this.makeText(this.game.world.centerY, 'Press any key to begin');
-    this.instructionsText = this.makeText(this.game.world.centerY + 100, `WASD to move
-IJKL to shoot`);
 
-    this.game.input.keyboard.addCallbacks(this, null, null, this.onKeyPress);
+    this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY, 'New Game', () => {
+      this.game.state.start('main');
+    }));
 
     this.x = -0.1;
     this.y = 0;
 
     tracking.mainMenu();
-  }
-
-  onKeyPress() {
-    this.game.input.keyboard.onPressCallback = null;
-    this.game.input.keyboard.reset(true);
-    this.game.state.start('main');
   }
 
   update() {
@@ -53,6 +47,5 @@ IJKL to shoot`);
         this.x = Math.random() < 0.5 ? 0.1 : -0.1;
       }
     }
-    // this.logo.tint = Math.random() * 0xffffff;
   }
 };
