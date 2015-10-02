@@ -29,28 +29,28 @@ export default class Waves {
   }
 
   update() {
-    if (!this.loaded) {
-      this.loadCurrentWave();
-    }
     let player = this.game.player;
     if (player) {
       this.game.physics.arcade.collide(player, this.enemiesGroup, player.onCollide, null, player);
       this.game.physics.arcade.collide(player, this.hulkGroup, player.onCollide, null, player);
     }
-    if (!this.enemiesGroup.getFirstAlive() && this.loaded && !this.transitioning) {
-      this.transitioning = true;
+
+    if (!this.loaded && !this.loading) {
+      this.loading = true;
       this.game.time.events.add(1000, () => {
-        // this.game.player.kill();
-        this.current += 1;
-        this.loaded = false;
-        this.transitioning = false;
-        this.onTransition.dispatch();
+        this.loadCurrentWave();
       });
+    }
+
+    if (this.loaded && !this.loading && !this.enemiesGroup.getFirstAlive()) {
+      this.current++;
+      this.loaded = false;
+      this.onTransition.dispatch();
     }
   }
 
   loadCurrentWave() {
-    this.loaded = true;
+    this.loaded = false;
     // Paranoid security.
     this.enemiesGroup.removeAll();
     this.hulkGroup.removeAll();
@@ -62,16 +62,27 @@ export default class Waves {
       return;
     }
     for (let i = 0; i < wave.g; i++) {
-      this.enemiesGroup.add(new Guard(this.game, this.game.world.randomX, this.game.world.randomY));
+      let guard = new Guard(this.game, this.game.world.randomX, this.game.world.randomY);
+      this.enemiesGroup.add(guard);
+      this.game.spawn.startSpawn(guard, () => {
+        this.loading = false;
+        this.loaded = true;
+      });
     }
     for (let i = 0; i < wave.e; i++) {
-      this.enemiesGroup.add(new Enforcer(this.game, this.game.world.randomX, this.game.world.randomY));
+      let enforcer = new Enforcer(this.game, this.game.world.randomX, this.game.world.randomY);
+      this.enemiesGroup.add(enforcer);
+      this.game.spawn.startSpawn(enforcer);
     }
     for (let i = 0; i < wave.a; i++) {
-      this.enemiesGroup.add(new Assassin(this.game, this.game.world.randomX, this.game.world.randomY));
+      let assassin = new Assassin(this.game, this.game.world.randomX, this.game.world.randomY);
+      this.enemiesGroup.add(assassin);
+      this.game.spawn.startSpawn(assassin);
     }
     for (let i = 0; i < wave.h; i++) {
-      this.hulkGroup.add(new Hulk(this.game, this.game.world.randomX, this.game.world.randomY));
+      let hulk = new Hulk(this.game, this.game.world.randomX, this.game.world.randomY);
+      this.hulkGroup.add(hulk);
+      this.game.spawn.startSpawn(hulk);
     }
     this.waveIndicator.text = `Wave ${this.current + 1}`;
     this.waveIndicator.visible = true;
