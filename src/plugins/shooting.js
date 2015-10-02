@@ -80,14 +80,18 @@ export default class Shooting {
 
   update() {
     this.shootSoundDelay -= this.game.time.physicsElapsedMS;
-    this.game.physics.arcade.overlap(this.game.enemiesGroup, this.playerBullets, this.onOverlap, null, this);
-    this.game.physics.arcade.overlap(this.game.hulkGroup, this.playerBullets, this.onOverlap, null, this);
+    this.game.physics.arcade.overlap(this.game.enemiesGroup, this.playerBullets, this.onOverlap, this.onProcess, this);
+    this.game.physics.arcade.overlap(this.game.hulkGroup, this.playerBullets, this.onOverlap, this.onProcess, this);
 
     let player = this.game.player;
     if (player) {
       this.game.physics.arcade.overlap(player, this.enforcerBullets, this.onEnforcerBullet, null, this);
       this.game.physics.arcade.overlap(player, this.spears, this.onEnforcerBullet, null, this);
     }
+  }
+
+  onProcess(enemy, bullet) {
+    return enemy && enemy.alive;
   }
 
   onOverlap(enemy, bullet) {
