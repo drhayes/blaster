@@ -1,5 +1,7 @@
 'use strict';
 
+const EXTRA_LIFE = 7500;
+
 export default class Score {
   constructor(game) {
     this.game = game;
@@ -10,6 +12,7 @@ export default class Score {
     this.scoreText.align = 'right';
     this.game.world.bringToTop(this.scoreText);
     this.updateScore();
+    this.extraLifeSound = this.game.add.audio('extraLife');
   }
 
   updateScore() {
@@ -18,6 +21,11 @@ export default class Score {
   }
 
   killed(thing) {
+    if (this.current % EXTRA_LIFE > (this.current + thing.score) % EXTRA_LIFE) {
+      this.game.spawn.lives++;
+      this.game.spawn.updateLivesImage();
+      this.extraLifeSound.play();
+    }
     this.current += thing.score;
     this.updateScore();
   }

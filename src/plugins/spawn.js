@@ -22,11 +22,13 @@ export default class Spawn {
     this.playerImage.anchor.set(0.5);
     this.playerImage.visible = false;
     this.playerImage.tint = 0x4682b4;
+    this.game.world.bringToTop(this.playerImage);
     this.livesImage = game.add.tileSprite(365, 20, 32, 32, 'player', 0);
     this.livesImage.anchor.setTo(0, 0.5);
     this.livesImage.tint = 0x4682b4;
     this.livesImage.scale.setTo(0.8);
-    this.livesImage.width = this.lives * 32;
+    this.updateLivesImage();
+    this.game.world.bringToTop(this.livesImage);
   }
 
   update() {
@@ -60,6 +62,10 @@ export default class Spawn {
     this.game.time.events.add(SPAWN_DURATION_MS - SPAWN_SOUND_DURATION_MS, () => {
       this.spawnSound.play();
     });
+    this.updateLivesImage();
+  }
+
+  updateLivesImage() {
     this.livesImage.width = this.lives * 32;
   }
 
