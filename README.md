@@ -6,4 +6,4 @@ A twin-stick shooter I wrote in [Phaser][phaser]. Follow along [on my blog][blas
 
   [phaser]: http://phaser.io
   [blasterblog]: http://drhayes.io/blaster
-  [playblaster]: http://drhayes-blaster.divshot.io
+  [playblaster]: http://blaster.drhayes.io
