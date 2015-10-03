@@ -90,7 +90,7 @@ export default class Shooting {
     }
   }
 
-  onProcess(enemy, bullet) {
+  onProcess(enemy) {
     return enemy && enemy.alive;
   }
 

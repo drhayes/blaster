@@ -31,8 +31,10 @@ export default class Lives {
     if ((!this.game.player || !this.game.player.alive) && this.lives >= 0) {
       this.spawnEvent = this.game.time.events.add(SPAWN_TIME_MS, this.startSpawn, this);
     }
-    if ((!this.game.player || !this.game.player.alive) && this.lives < 0) {
-      this.onGameOver.dispatch();
+    if ((!this.game.player || !this.game.player.alive) && this.lives < 0 && !this.gameOverEvent) {
+      this.gameOverEvent = this.game.time.events.add(500, () => {
+        this.onGameOver.dispatch();
+      });
     }
   }
 

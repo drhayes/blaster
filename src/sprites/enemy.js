@@ -1,6 +1,6 @@
 'use strict';
 
-var fs = require('fs');
+// var fs = require('fs');
 import enableBehaviors from '../behaviors/enableBehaviors';
 
 export default class Enemy extends Phaser.Sprite {
