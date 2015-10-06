@@ -3,6 +3,8 @@
 import tracking from '../tracking';
 import BlasterButton from '../sprites/blasterButton';
 
+var fs = require('fs');
+
 export default class MainMenu extends Phaser.State {
   makeText(y, text, size) {
     size = size || 40;
@@ -19,34 +21,23 @@ export default class MainMenu extends Phaser.State {
     this.back.fixedToCamera = true;
     this.back.alpha = 0.1;
 
-    this.logo = this.game.add.image(this.game.world.centerX, 50, 'blasterLogo');
-    this.logo.anchor.setTo(0.5, 0);
-    this.logo.scale.set(2.3);
+    let logo = this.game.add.image(this.game.world.centerX, 50, 'blasterLogo');
+    logo.anchor.setTo(0.5, 0);
+    logo.tint = 0x4682b4;
+    let glow = new Phaser.Filter(this.game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
+    logo.filters = [glow];
 
-    this.alphaText = this.makeText(310, 'alpha');
+    this.alphaText = this.makeText(this.game.world.centerY * 1/3, 'alpha', 24);
     this.instructionsText = this.makeText(360, 'WASD to move, IJKL to shoot');
 
     this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY, 'New Game', () => {
       this.game.state.start('main');
     }));
 
-    this.x = -0.1;
-    this.y = 0;
-
     tracking.mainMenu();
   }
 
   update() {
-    this.back.tilePosition.x += this.x * this.game.time.physicsElapsedMS;
-    this.back.tilePosition.y += this.y * this.game.time.physicsElapsedMS;
-    if (Math.random() < 0.02) {
-      if (Math.random() < 0.5) {
-        this.x = 0;
-        this.y = Math.random() < 0.5 ? 0.1 : -0.1;
-      } else {
-        this.y = 0;
-        this.x = Math.random() < 0.5 ? 0.1 : -0.1;
-      }
-    }
+    this.back.tilePosition.x += -0.1 * this.game.time.physicsElapsedMS;
   }
 }
