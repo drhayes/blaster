@@ -21,7 +21,7 @@ export default class Assassin extends Enemy {
     this.body.bounce.set(0.4);
     this.knockback = 0.8;
 
-    this.health = 10;
-    this.score = 1000;
+    this.health = 30;
+    this.score = 750;
   }
 }

@@ -8,7 +8,7 @@ import Assassin from '../sprites/assassin';
 import Hulk from '../sprites/hulk';
 import tracking from '../tracking';
 
-let wavesData = yaml.safeLoad(fs.readFileSync(__dirname + '/wavesData.yaml', 'utf8'));
+let wavesData = yaml.safeLoad(fs.readFileSync(__dirname + '/../data/wavesData.yaml', 'utf8'));
 
 export default class Waves {
   constructor(game) {
@@ -49,6 +49,7 @@ export default class Waves {
     }
   }
 
+  // TODO: Make this not dumb and awful.
   loadCurrentWave() {
     this.loaded = false;
     // Paranoid security.
@@ -72,17 +73,26 @@ export default class Waves {
     for (let i = 0; i < wave.e; i++) {
       let enforcer = new Enforcer(this.game, this.game.world.randomX, this.game.world.randomY);
       this.enemiesGroup.add(enforcer);
-      this.game.spawn.startSpawn(enforcer);
+      this.game.spawn.startSpawn(enforcer, () => {
+        this.loading = false;
+        this.loaded = true;
+      });
     }
     for (let i = 0; i < wave.a; i++) {
       let assassin = new Assassin(this.game, this.game.world.randomX, this.game.world.randomY);
       this.enemiesGroup.add(assassin);
-      this.game.spawn.startSpawn(assassin);
+      this.game.spawn.startSpawn(assassin, () => {
+        this.loading = false;
+        this.loaded = true;
+      });
     }
     for (let i = 0; i < wave.h; i++) {
       let hulk = new Hulk(this.game, this.game.world.randomX, this.game.world.randomY);
       this.hulkGroup.add(hulk);
-      this.game.spawn.startSpawn(hulk);
+      this.game.spawn.startSpawn(hulk, () => {
+        this.loading = false;
+        this.loaded = true;
+      });
     }
     this.waveIndicator.text = `Wave ${this.current + 1}`;
     this.waveIndicator.visible = true;

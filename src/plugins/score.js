@@ -30,7 +30,6 @@ export default class Score {
   }
 
   killed(thing) {
-    console.log(thing.x, thing.y);
     if (this.current % EXTRA_LIFE > (this.current + thing.score) % EXTRA_LIFE) {
       this.game.lives.lives++;
       this.game.lives.updateLivesImage();
