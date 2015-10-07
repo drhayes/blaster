@@ -9,6 +9,7 @@ import Hulk from '../sprites/hulk';
 import tracking from '../tracking';
 
 let wavesData = yaml.safeLoad(fs.readFileSync(__dirname + '/../data/wavesData.yaml', 'utf8'));
+console.log('How many waves? ', wavesData.length);
 
 export default class Waves {
   constructor(game) {
