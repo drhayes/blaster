@@ -7,7 +7,7 @@
     "start": "wzrd src/game.js:game.js -p 8080 -- -d",
     "lint": "eslint src/ --fix",
     "predeploy": "rm -rf dist && mkdir -p dist/vendor",
-    "deploy": "cp index.html dist && cp vendor/phaser.min.js dist/vendor && browserify src/game.js -o dist/game.js && cp -R media dist/media && cp CNAME dist && surge dist/"
+    "deploy": "cp *.html dist && cp vendor/phaser.min.js dist/vendor && browserify src/game.js -o dist/game.js && cp -R media dist/media && cp CNAME dist && surge dist/"
   },
   "repository": {
     "type": "git",
