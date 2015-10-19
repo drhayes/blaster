@@ -9,7 +9,7 @@ var Main = require('./states/main');
 var game = window.game = new Phaser.Game({
   width: 1280,
   height: 960,
-  renderer: Phaser.AUTO,
+  renderer: Phaser.CANVAS,
   state: new Boot(),
   transparent: false,
   antialias: false,

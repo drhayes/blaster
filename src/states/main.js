@@ -23,7 +23,7 @@ export default class Main extends Phaser.State {
     this.back.width = 1280;
     this.back.height = 960;
     this.back.fixedToCamera = true;
-    this.back.alpha = 0.2;
+    this.back.alpha = 0.1;
     this.back.tint = this.game.tinting.currentTint;
     this.game.world.sendToBack(this.back);
     // Starting position for player.
