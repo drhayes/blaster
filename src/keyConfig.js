@@ -1,5 +1,8 @@
 'use strict';
 
+export const KEYS = ['moveUp', 'moveDown', 'moveLeft', 'moveRight',
+  'shootUp', 'shootDown', 'shootLeft', 'shootRight'];
+
 let keyConfig = {
   moveUp: Phaser.Keyboard.W,
   moveDown: Phaser.Keyboard.S,
@@ -20,7 +23,9 @@ let keyConfig = {
   },
 
   reset: function () {
-    // TODO: Get this working.
+    KEYS.forEach((key) => {
+      this[key] = this.defaults[key];
+    });
   }
 };
 

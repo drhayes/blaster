@@ -2,11 +2,9 @@
 
 import BaseIntro from './baseIntro';
 import tracking from '../tracking';
-import keyConfig from '../keyConfig';
+import keyConfig, { KEYS } from '../keyConfig';
 import keycode from 'keycode';
 
-const KEYS = ['moveUp', 'moveDown', 'moveLeft', 'moveRight',
-  'shootUp', 'shootDown', 'shootLeft', 'shootRight'];
 const POSITIONS = [
   { x: 0.5, y: 0.8 },
   { x: 0.5, y: 1.2 },
