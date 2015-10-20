@@ -1,5 +1,11 @@
 'use strict';
 
+require('../index.html');
+// Google verification file.
+require('../google140404e41df18dd3.html');
+// Phaser itself, duh.
+require('../vendor/phaser.min.js');
+
 var Boot = require('./states/boot');
 var Preload = require('./states/preload');
 var Intro = require('./states/intro');

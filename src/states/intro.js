@@ -1,7 +1,5 @@
 'use strict';
 
-var fs = require('fs');
-
 export default class Intro extends Phaser.State {
   makeText(y, text, size) {
     size = size || 40;
@@ -49,8 +47,6 @@ export default class Intro extends Phaser.State {
     logo.alpha = 0;
     logo.anchor.set(0.5, 0);
     logo.tint = 0x4682b4;
-    let glow = new Phaser.Filter(this.game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
-    logo.filters = [glow];
 
     let logoTween = this.game.add.tween(logo).to({
       alpha: 1,

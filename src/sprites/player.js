@@ -1,6 +1,5 @@
 'use strict';
 
-var fs = require('fs');
 import enableBehaviors from '../behaviors/enableBehaviors';
 import TiltMove from '../behaviors/tiltMove';
 import PlayerMove from '../behaviors/playerMove';
@@ -23,9 +22,6 @@ export default class Player extends Phaser.Sprite {
     this.body.height = 30;
     this.body.collideWorldBounds = true;
     this.tint = 0x4682b4;
-
-    let glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
-    this.filters = [glow];
   }
 
   update() {

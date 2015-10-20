@@ -3,8 +3,6 @@
 import tracking from '../tracking';
 import BlasterButton from '../sprites/blasterButton';
 
-var fs = require('fs');
-
 export default class MainMenu extends Phaser.State {
   makeText(y, text, size) {
     size = size || 40;
@@ -24,8 +22,6 @@ export default class MainMenu extends Phaser.State {
     let logo = this.game.add.image(this.game.world.centerX, 50, 'blasterLogo');
     logo.anchor.setTo(0.5, 0);
     logo.tint = 0x4682b4;
-    let glow = new Phaser.Filter(this.game, null, fs.readFileSync(__dirname + '/../shaders/glow.frag', 'utf8'));
-    logo.filters = [glow];
 
     this.alphaText = this.makeText(this.game.world.centerY * 1/3, 'alpha', 24);
     this.instructionsText = this.makeText(360, 'WASD to move, IJKL to shoot');

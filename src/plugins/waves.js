@@ -1,14 +1,12 @@
 'use strict';
 
-var fs = require('fs');
-var yaml = require('js-yaml');
 import Guard from '../sprites/guard';
 import Enforcer from '../sprites/enforcer';
 import Assassin from '../sprites/assassin';
 import Hulk from '../sprites/hulk';
 import tracking from '../tracking';
 
-let wavesData = yaml.safeLoad(fs.readFileSync(__dirname + '/../data/wavesData.yaml', 'utf8'));
+let wavesData = require('../data/wavesData.yaml');
 console.log('How many waves? ', wavesData.length);
 
 export default class Waves {
