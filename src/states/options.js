@@ -2,7 +2,7 @@
 
 import BaseIntro from './baseIntro';
 import tracking from '../tracking';
-import keyConfig, { KEYS } from '../keyConfig';
+import keyConfig, { KEYS, save as saveKeys, reset as resetKeys } from '../keyConfig';
 import keycode from 'keycode';
 
 const POSITIONS = [
@@ -34,11 +34,11 @@ export default class Options extends BaseIntro {
     });
 
     this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.4, 'Main Menu', () => {
-      keyConfig.save();
+      saveKeys();
       this.game.state.start('mainMenu');
     });
     this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.6, 'Reset Defaults', () => {
-      keyConfig.reset();
+      resetKeys();
       this.updateButtonLabels();
     });
 
