@@ -26,6 +26,9 @@ export function save () {
 
 export function load () {
   let keys = ls('blasterKeys');
+  if (!keys) {
+    return;
+  }
   KEYS.forEach((key) => {
     keyConfig[key] = keys[key];
   });
