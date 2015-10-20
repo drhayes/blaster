@@ -1,6 +1,7 @@
 'use strict';
 
 import Behavior from './behavior';
+import keyConfig from '../keyConfig';
 
 const THRESHOLD = 0.001;
 const BULLET_WAVER_DEGREES = 5;
@@ -16,11 +17,10 @@ export default class PlayerShoot extends Behavior {
 
   added(player) {
     this.player = player;
-    // TODO: Configurable somehow?
-    this.up = player.game.input.keyboard.addKey(Phaser.Keyboard.I);
-    this.down = player.game.input.keyboard.addKey(Phaser.Keyboard.K);
-    this.left = player.game.input.keyboard.addKey(Phaser.Keyboard.J);
-    this.right = player.game.input.keyboard.addKey(Phaser.Keyboard.L);
+    this.up = player.game.input.keyboard.addKey(keyConfig.shootUp);
+    this.down = player.game.input.keyboard.addKey(keyConfig.shootDown);
+    this.left = player.game.input.keyboard.addKey(keyConfig.shootLeft);
+    this.right = player.game.input.keyboard.addKey(keyConfig.shootRight);
     this.pad = player.game.input.gamepad.pad1;
   }
 

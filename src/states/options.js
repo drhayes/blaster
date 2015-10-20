@@ -83,6 +83,6 @@ export default class Options extends BaseIntro {
     }
     this.updateButtonLabels();
     this.listeningFor = null;
-    this.game.input.keyboard.reset(true);
+    this.game.input.keyboard.onDownCallback = null;
   }
 }

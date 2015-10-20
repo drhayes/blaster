@@ -1,6 +1,7 @@
 'use strict';
 
 import Behavior from './behavior';
+import keyConfig from '../keyConfig';
 
 const MAX_VEL = 600;
 const DRAG = 1200;
@@ -18,11 +19,10 @@ export default class PlayerMove extends Behavior {
     this.player = player;
     player.body.maxVelocity.setTo(MAX_VEL);
     player.body.drag.setTo(DRAG);
-    // TODO: Configurable somehow?
-    this.up = player.game.input.keyboard.addKey(Phaser.Keyboard.W);
-    this.down = player.game.input.keyboard.addKey(Phaser.Keyboard.S);
-    this.left = player.game.input.keyboard.addKey(Phaser.Keyboard.A);
-    this.right = player.game.input.keyboard.addKey(Phaser.Keyboard.D);
+    this.up = player.game.input.keyboard.addKey(keyConfig.moveUp);
+    this.down = player.game.input.keyboard.addKey(keyConfig.moveDown);
+    this.left = player.game.input.keyboard.addKey(keyConfig.moveLeft);
+    this.right = player.game.input.keyboard.addKey(keyConfig.moveRight);
     this.pad = player.game.input.gamepad.pad1;
   }
 
