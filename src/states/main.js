@@ -41,8 +41,11 @@ export default class Main extends Phaser.State {
       gameOverText.align = 'center';
       this.game.time.events.add(3000, () => {
         gameOverText.text = `GAME OVER
-Press any key to continue`;
-        this.game.input.keyboard.addCallbacks(this, null, null, this.onKeyPress);
+Press space to continue`;
+        let space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        space.onDown.addOnce(() => {
+          this.onKeyPress();
+        });
       });
     });
 
@@ -51,7 +54,6 @@ Press any key to continue`;
 
   onKeyPress() {
     this.transitionSignal.detach();
-    this.game.input.keyboard.onPressCallback = null;
     this.game.input.keyboard.reset(true);
     this.game.state.start('mainMenu', true, false);
   }
