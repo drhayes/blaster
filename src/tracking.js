@@ -15,6 +15,14 @@ var tracking = {
     mixpanel.track('Main menu');
   },
 
+  instructions() {
+    mixpanel.track('Instructions');
+  },
+
+  options() {
+    mixpanel.track('Options');
+  },
+
   startGame() {
     mixpanel.track('Start game');
   },

@@ -10,6 +10,8 @@ var Boot = require('./states/boot');
 var Preload = require('./states/preload');
 var Intro = require('./states/intro');
 var MainMenu = require('./states/mainMenu');
+var Instructions = require('./states/instructions');
+var Options = require('./states/options');
 var Main = require('./states/main');
 
 var game = window.game = new Phaser.Game({
@@ -24,4 +26,6 @@ var game = window.game = new Phaser.Game({
 game.state.add('preload', new Preload());
 game.state.add('intro', new Intro());
 game.state.add('mainMenu', new MainMenu());
+game.state.add('instructions', new Instructions());
+game.state.add('options', new Options());
 game.state.add('main', new Main());

@@ -1,6 +1,8 @@
 'use strict';
 
-export default class Intro extends Phaser.State {
+import BaseIntro from './baseIntro';
+
+export default class Intro extends BaseIntro {
   makeText(y, text, size) {
     size = size || 40;
     let textThing = this.game.add.bitmapText(this.game.world.centerX, y, 'computerPixelFont', text, size);
@@ -10,17 +12,14 @@ export default class Intro extends Phaser.State {
   }
 
   create() {
+    super.create();
     this.game.input.keyboard.addCallbacks(this, null, null, this.nextState);
+    this.game.input.onDown.addOnce(this.nextState, this);
 
-    this.back = this.game.add.tileSprite(0, 0, 691, 693, 'circuitry');
-    this.back.width = 1280;
-    this.back.height = 960;
-    this.back.fixedToCamera = true;
     this.back.alpha = 0;
     this.game.add.tween(this.back).to({
       alpha: 0.1
     }, 1000, Phaser.Easing.Cubic.Out, true);
-
 
     let phaserLogo = this.game.add.image(this.game.world.centerX, this.game.world.centerY, 'phaserLogo');
     phaserLogo.alpha = 0;
@@ -43,27 +42,20 @@ export default class Intro extends Phaser.State {
       alpha: 1
     }, 1500, Phaser.Easing.Cubic.Out, true, 3000, 0, true);
 
-    let logo = this.game.add.image(this.game.world.centerX, this.game.world.height, 'blasterLogo');
-    logo.alpha = 0;
-    logo.anchor.set(0.5, 0);
-    logo.tint = 0x4682b4;
-
-    let logoTween = this.game.add.tween(logo).to({
+    this.logo.y = this.game.world.height;
+    let logoTween = this.game.add.tween(this.logo).to({
       alpha: 1,
       y: 50
     }, 2500, Phaser.Easing.Cubic.Out, true, 6000);
     logoTween.onComplete.add(() => {
       this.nextState();
     });
+    this.alphaText.alpha = 0;
   }
 
   nextState() {
     this.game.input.keyboard.onPressCallback = null;
     this.game.input.keyboard.reset(true);
     this.game.state.start('mainMenu');
-  }
-
-  update() {
-    this.back.tilePosition.x += -0.1 * this.game.time.physicsElapsedMS;
   }
 }
