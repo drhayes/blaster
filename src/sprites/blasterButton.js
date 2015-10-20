@@ -9,12 +9,13 @@ export default class BlasterButton extends Phaser.Button {
     this.addChild(this.buttonText);
     this.alpha = 0.5;
     this.anchor.setTo(0.5);
-    this.blip = this.game.add.audio('blip1');
+    this.blip1 = this.game.add.audio('blip1');
+    this.blip2 = this.game.add.audio('blip2');
 
     this.onInputOver.add(() => {
       this.alpha = 1;
       this.tint = 0x4682b4;
-      this.blip.play();
+      this.blip2.play();
     });
     this.onInputOut.add(() => {
       this.alpha = 0.5;
@@ -22,9 +23,12 @@ export default class BlasterButton extends Phaser.Button {
     });
     this.onInputDown.add(() => {
       this.alpha = 1;
+      this.tint = 0xffffff;
+      this.blip1.play();
     });
     this.onInputUp.add(() => {
-      this.alpha = 0.5;
+      this.alpha = 1;
+      this.tint = 0x4682b4;
     });
   }
 }

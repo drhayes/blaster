@@ -30,6 +30,7 @@ export default class Preload extends Phaser.State {
     this.game.load.audio('spearWarn', require('../../media/sounds/spearWarn.mp3'));
     this.game.load.audio('extraLife', require('../../media/sounds/extraLife.mp3'));
     this.game.load.audio('blip1', require('../../media/sounds/blip1.mp3'));
+    this.game.load.audio('blip2', require('../../media/sounds/blip2.mp3'));
 
     tracking.startPreload();
     this.startTime = Date.now();

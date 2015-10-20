@@ -24,11 +24,16 @@ export default class MainMenu extends Phaser.State {
     logo.tint = 0x4682b4;
 
     this.alphaText = this.makeText(this.game.world.centerY * 1/3, 'alpha', 24);
-    this.instructionsText = this.makeText(360, 'WASD to move, IJKL to shoot');
 
-    this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY, 'New Game', () => {
+    this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY * .8, 'New Game', () => {
       this.game.state.start('main');
     }));
+    this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY, 'Options', () => {
+      console.log('options!');
+    }));
+    this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY * 1.2, 'Instructions', () => {
+      console.log('instructions');
+    }))
 
     tracking.mainMenu();
   }
