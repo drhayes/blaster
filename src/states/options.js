@@ -3,6 +3,20 @@
 import BaseIntro from './baseIntro';
 import tracking from '../tracking';
 import keyConfig from '../keyConfig';
+import keycode from 'keycode';
+
+const KEYS = ['moveUp', 'moveDown', 'moveLeft', 'moveRight',
+  'shootUp', 'shootDown', 'shootLeft', 'shootRight'];
+const POSITIONS = [
+  { x: 0.5, y: 0.8 },
+  { x: 0.5, y: 1.2 },
+  { x: 0.2, y: 1 },
+  { x: 0.8, y: 1 },
+  { x: 1.5, y: 0.8 },
+  { x: 1.5, y: 1.2 },
+  { x: 1.2, y: 1 },
+  { x: 1.8, y: 1 },
+];
 
 export default class Options extends BaseIntro {
   create() {
@@ -13,30 +27,12 @@ export default class Options extends BaseIntro {
     let shoot = this.makeText(this.game.world.centerY, 'Shoot');
     shoot.x = this.game.world.centerX * 1.5;
 
-    let moveUp = this.makeButton(this.game.world.centerX * 0.5, this.game.world.centerY * 0.8, 'W', () => {
-      console.log('blah!');
-    });
-    let moveDown = this.makeButton(this.game.world.centerX * 0.5, this.game.world.centerY * 1.2, 'S', () => {
-      console.log('blah!');
-    });
-    let moveLeft = this.makeButton(this.game.world.centerX * 0.2, this.game.world.centerY, 'A', () => {
-      console.log('blah!');
-    });
-    let moveRight = this.makeButton(this.game.world.centerX * 0.8, this.game.world.centerY, 'D', () => {
-      console.log('blah!');
-    });
-
-    let shootUp = this.makeButton(this.game.world.centerX * 1.5, this.game.world.centerY * 0.8, 'I', () => {
-      console.log('blah!');
-    });
-    let shootDown = this.makeButton(this.game.world.centerX * 1.5, this.game.world.centerY * 1.2, 'K', () => {
-      console.log('blah!');
-    });
-    let shootLeft = this.makeButton(this.game.world.centerX * 1.2, this.game.world.centerY, 'J', () => {
-      console.log('blah!');
-    });
-    let shootRight = this.makeButton(this.game.world.centerX * 1.8, this.game.world.centerY, 'L', () => {
-      console.log('blah!');
+    KEYS.forEach((key, i) => {
+      let pos = POSITIONS[i];
+      let label = keycode.names[keyConfig[key]].toUpperCase();
+      this[key] = this.makeButton(this.game.world.centerX * pos.x, this.game.world.centerY * pos.y, label, () => {
+        this.listenFor(key);
+      });
     });
 
     this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.4, 'Main Menu', () => {
@@ -45,8 +41,48 @@ export default class Options extends BaseIntro {
     });
     this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.6, 'Reset Defaults', () => {
       keyConfig.reset();
+      this.updateButtonLabels();
     });
 
     tracking.options();
+  }
+
+  updateButtonLabels() {
+    KEYS.forEach((key) => {
+      this[key].buttonText.text = keycode.names[keyConfig[key]].toUpperCase();
+    });
+  }
+
+  listenFor(key) {
+    if (this.listeningFor) {
+      let button = this[this.listeningFor];
+      button.deselect();
+    }
+    this.listeningFor = key;
+    if (this.listeningFor) {
+      let button = this[this.listeningFor];
+      button.select();
+      this.game.input.keyboard.addCallbacks(this, this.onDown);
+    }
+  }
+
+  update() {
+    super.update();
+    if (this.listeningFor) {
+      let button = this[this.listeningFor];
+      let letter = Math.round(Math.random() * 25) + 65;
+      button.buttonText.text = keycode.names[letter].toUpperCase();
+    }
+  }
+
+  onDown(e) {
+    if (this.listeningFor) {
+      let button = this[this.listeningFor];
+      button.deselect();
+      keyConfig[this.listeningFor] = e.keyCode;
+    }
+    this.updateButtonLabels();
+    this.listeningFor = null;
+    this.game.input.keyboard.reset(true);
   }
 }

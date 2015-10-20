@@ -26,6 +26,7 @@
     "file-loader": "^0.8.4",
     "image-webpack-loader": "^1.6.2",
     "json-loader": "^0.5.3",
+    "keycode": "^2.1.0",
     "script-loader": "^0.6.1",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1",
