@@ -13,15 +13,15 @@ export default class MainMenu extends BaseIntro {
       this.game.state.start('main');
     });
 
-    this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY * .8, 'New Game', () => {
+    this.makeButton(this.game.world.centerX, this.game.world.centerY * 0.8, 'New Game', () => {
       this.game.state.start('main');
-    }));
-    this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY, 'Options', () => {
+    });
+    this.makeButton(this.game.world.centerX, this.game.world.centerY, 'Options', () => {
       this.game.state.start('options');
-    }));
-    this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY * 1.2, 'Instructions', () => {
+    });
+    this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.2, 'Instructions', () => {
       this.game.state.start('instructions');
-    }));
+    });
 
     this.pressSpace = this.makeText(this.game.world.centerY * 1.8, 'Press Space For New Game');
 

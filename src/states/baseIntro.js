@@ -1,5 +1,7 @@
 'use strict';
 
+import BlasterButton from '../sprites/blasterButton';
+
 export default class BaseIntro extends Phaser.State {
   makeText(y, text, size) {
     size = size || 40;
@@ -22,6 +24,10 @@ export default class BaseIntro extends Phaser.State {
     this.logo.anchor.setTo(0.5, 0);
     this.logo.tint = 0x4682b4;
     this.alphaText = this.makeText(this.game.world.centerY * 1/3, 'alpha', 24);
+  }
+
+  makeButton(x, y, text, cb) {
+    return this.game.add.existing(new BlasterButton(this.game, x, y, text, cb));
   }
 
   create() {
