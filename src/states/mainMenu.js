@@ -19,6 +19,11 @@ export default class MainMenu extends Phaser.State {
     this.back.fixedToCamera = true;
     this.back.alpha = 0.1;
 
+    this.space = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    this.space.onDown.addOnce(() => {
+      this.game.state.start('main');
+    });
+
     let logo = this.game.add.image(this.game.world.centerX, 50, 'blasterLogo');
     logo.anchor.setTo(0.5, 0);
     logo.tint = 0x4682b4;
@@ -33,7 +38,9 @@ export default class MainMenu extends Phaser.State {
     }));
     this.game.add.existing(new BlasterButton(this.game, this.game.world.centerX, this.game.world.centerY * 1.2, 'Instructions', () => {
       console.log('instructions');
-    }))
+    }));
+
+    this.pressSpace = this.makeText(this.game.world.centerY * 1.8, 'Press Space For New Game');
 
     tracking.mainMenu();
   }
