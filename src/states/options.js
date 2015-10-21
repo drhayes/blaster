@@ -34,7 +34,6 @@ export default class Options extends BaseIntro {
     });
 
     this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.4, 'Main Menu', () => {
-      saveKeys();
       this.game.state.start('mainMenu');
     });
     this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.6, 'Reset Defaults', () => {
@@ -78,6 +77,7 @@ export default class Options extends BaseIntro {
       let button = this[this.listeningFor];
       button.deselect();
       keyConfig[this.listeningFor] = e.keyCode;
+      saveKeys();
     }
     this.updateButtonLabels();
     this.listeningFor = null;
