@@ -5,9 +5,10 @@ import Behavior from './behavior';
 let center;
 
 export default class FleeCenter extends Behavior {
-  constructor() {
+  constructor(multiplier = 1) {
     super();
     this.angleForMove = new Phaser.Point();
+    this.radiusFactor = 2000 * multiplier;
   }
 
   added(entity) {
@@ -38,7 +39,7 @@ export default class FleeCenter extends Behavior {
     }
     this.angleForMove.normalize();
     this.angleForMove.rotate(0, 0, 180, true);
-    this.angleForMove.multiply(2000 / distance, 2000 / distance);
+    this.angleForMove.multiply(this.radiusFactor / distance, this.radiusFactor / distance);
     entity.body.velocity.x = this.angleForMove.x;
     entity.body.velocity.y = this.angleForMove.y;
   }

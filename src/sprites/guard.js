@@ -11,7 +11,7 @@ export default class Guard extends Enemy {
 
     this.addBehavior(new TiltMove());
     this.addBehavior(new March());
-    this.addBehavior(new FleeCenter());
+    this.addBehavior(new FleeCenter(1.2));
 
     this.anchor.setTo(0.5);
     this.body.width = 30;
