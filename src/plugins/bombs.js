@@ -34,9 +34,24 @@ export default class Bombs {
     this.x = x;
     this.y = y;
     this.lastFrameMS = this.game.time.time;
+    this.game.enemiesGroup.forEach(this.bombEnemy, this);
+  }
+
+  bombEnemy(enemy) {
+    if (!enemy.alive) {
+      return;
+    }
+    // If enemy within danger zone, insta-death.
+    if (enemy.position.distance(this.game.player) < 100) {
+      enemy.damage(100);
+    }
   }
 
   update() {
+    // TODO: Cooldown!
+    // TODO: Expanding range of death!
+    // TODO: Block bullets!
+    // TODO: Shove enemies!
   }
 
   render() {
