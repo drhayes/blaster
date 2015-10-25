@@ -15,7 +15,6 @@ export default class Bombs {
     for (let i = 0; i < NUM_FRAMES; i++) {
       let frame = this.game.make.bitmapData(SIZE, SIZE);
       if (i < NUM_FRAMES / 2) {
-        let scale = 1 + (i / 10);
         frame.context.strokeStyle = '#ffff00';
         frame.context.beginPath();
         frame.context.arc(SIZE / 2, SIZE / 2, 16 + i, 0, Math.PI * 2);
@@ -34,24 +33,23 @@ export default class Bombs {
     this.x = x;
     this.y = y;
     this.lastFrameMS = this.game.time.time;
-    this.game.enemiesGroup.forEach(this.bombEnemy, this);
   }
 
-  bombEnemy(enemy) {
-    if (!enemy.alive) {
-      return;
-    }
+  bombEnemy(enemy, thing) {
     // If enemy within danger zone, insta-death.
-    if (enemy.position.distance(this.game.player) < 100) {
+    let distance = Math.min(16 + this.currentFrame, 150);
+    if (enemy.position.distance(this) < distance) {
       enemy.damage(100);
     }
   }
 
   update() {
     // TODO: Cooldown!
-    // TODO: Expanding range of death!
     // TODO: Block bullets!
     // TODO: Shove enemies!
+    if (this.booming && this.currentFrame < NUM_FRAMES / 2) {
+      this.game.enemiesGroup.forEach(this.bombEnemy, this, true);
+    }
   }
 
   render() {
