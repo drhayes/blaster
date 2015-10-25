@@ -4,6 +4,7 @@ import enableBehaviors from '../behaviors/enableBehaviors';
 import TiltMove from '../behaviors/tiltMove';
 import PlayerMove from '../behaviors/playerMove';
 import PlayerShoot from '../behaviors/playerShoot';
+import PlayerBomb from '../behaviors/playerBomb';
 import TouchAndDie from '../behaviors/touchAndDie';
 
 export default class Player extends Phaser.Sprite {
@@ -15,6 +16,7 @@ export default class Player extends Phaser.Sprite {
     this.addBehavior(new TiltMove());
     this.addBehavior(new PlayerMove());
     this.addBehavior(new PlayerShoot(game.shooting.pool));
+    this.addBehavior(new PlayerBomb());
     this.addBehavior(new TouchAndDie());
 
     this.anchor.setTo(0.5);
@@ -29,6 +31,11 @@ export default class Player extends Phaser.Sprite {
       return;
     }
     this.behave('update');
+  }
+
+  render() {
+    super.render();
+    this.behave('render');
   }
 
   onCollide(player, other) {

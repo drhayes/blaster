@@ -1,5 +1,3 @@
-'use strict';
-
 import Behavior from './behavior';
 import keyConfig from '../keyConfig';
 
