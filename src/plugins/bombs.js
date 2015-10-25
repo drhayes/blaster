@@ -7,6 +7,7 @@ export default class Bombs {
     game.bombs = this;
 
     this.currentFrame = 0;
+    this.lastFrameMS = 0;
     this.booming = false;
     this.bombFrames = [];
     // Generate shockwave frames.
@@ -32,6 +33,7 @@ export default class Bombs {
     this.booming = true;
     this.x = x;
     this.y = y;
+    this.lastFrameMS = this.game.time.time;
   }
 
   update() {
@@ -40,8 +42,10 @@ export default class Bombs {
   render() {
     if (this.booming) {
       this.game.context.drawImage(this.bombFrames[this.currentFrame].canvas, this.x - SIZE / 2, this.y - SIZE / 2);
-      this.currentFrame++;
-      if (this.currentFrame === this.bombFrames.length) {
+      let delta = this.game.time.time - this.lastFrameMS;
+      this.lastFrameMS = this.game.time.time;
+      this.currentFrame += Math.round(delta / 16);
+      if (this.currentFrame >= this.bombFrames.length) {
         this.booming = false;
         this.currentFrame = 0;
       }
