@@ -1,5 +1,6 @@
 const NUM_FRAMES = 200;
 const SIZE = 600;
+const BLAST_RADIUS = 260;
 
 export default class Bombs {
   constructor(game) {
@@ -7,30 +8,13 @@ export default class Bombs {
     game.bombs = this;
 
     this.currentFrame = 0;
-    this.lastFrameMS = 0;
     this.booming = false;
+    // Generate circular queue of shockwave frames.
     this.bombFrames = [];
-    // Generate shockwave frames.
-    let radius = 0;
-    let radiusDelta = 10;
-    for (let i = 0; i < NUM_FRAMES; i++) {
+    for (let i = 0; i < 6; i++) {
       let frame = this.game.make.bitmapData(SIZE, SIZE);
-      if (i < NUM_FRAMES / 2) {
-        radius += radiusDelta;
-        radiusDelta -= 0.2;
-        radiusDelta = Math.max(.1, radiusDelta);
-        frame.context.strokeStyle = '#ffff00';
-        frame.context.beginPath();
-        frame.context.arc(SIZE / 2, SIZE / 2, radius, 0, Math.PI * 2);
-        frame.context.stroke();
-      }
-      for (let j = i - 1; j > i - 5; j--) {
-        let innerFrame = this.bombFrames[j];
-        frame.copy(innerFrame, 0, 0, SIZE, SIZE, 0, 0, SIZE, SIZE, 0, 0, 0, 1, 1, 0.21, 'overlay');
-      }
       this.bombFrames.push(frame);
     }
-    this.blastRadius = radius;
     this.angleForMove = new Phaser.Point();
   }
 
@@ -38,19 +22,21 @@ export default class Bombs {
     this.booming = true;
     this.x = x;
     this.y = y;
-    this.lastFrameMS = this.game.time.time;
+    this.radius = 0;
+    this.radiusDelta = 10;
+    this.bombFrames.forEach((frame) => { frame.cls(); });
   }
 
   bombEnemy(enemy, thing) {
     // If enemy within danger zone, insta-death.
     let enemyDistance = enemy.position.distance(this);
-    if (enemyDistance < this.blastRadius) {
+    if (enemyDistance < BLAST_RADIUS) {
       enemy.damage(1);
       if (enemy.stun) {
         enemy.stun();
       }
     }
-    if (enemyDistance < this.blastRadius) {
+    if (enemyDistance < BLAST_RADIUS) {
       let knockback = 5000 / enemyDistance;
       // Push enemy back.
       this.angleForMove.set(this.x - enemy.x, this.y - enemy.y)
@@ -64,21 +50,47 @@ export default class Bombs {
   update() {
     // TODO: Cooldown!
     // TODO: Block bullets?
-    if (this.booming && this.currentFrame < NUM_FRAMES / 2) {
+    if (this.booming) {
       this.game.enemiesGroup.forEach(this.bombEnemy, this, true);
+      if (this.radius > BLAST_RADIUS) {
+        this.booming = false;
+      }
     }
   }
 
   render() {
-    if (this.booming) {
-      this.game.context.drawImage(this.bombFrames[this.currentFrame].canvas, this.x - SIZE / 2, this.y - SIZE / 2);
-      let delta = this.game.time.time - this.lastFrameMS;
-      this.lastFrameMS = this.game.time.time;
-      this.currentFrame += Math.round(delta / 16);
-      if (this.currentFrame >= this.bombFrames.length) {
-        this.booming = false;
-        this.currentFrame = 0;
-      }
+    if (!this.booming) {
+      return;
     }
+    let frame = this.bombFrames[this.currentFrame];
+    frame.cls();
+    if (this.radius < BLAST_RADIUS - 20) {
+      let colorComponent = Math.floor((BLAST_RADIUS - this.radius)).toString(16);
+      frame.context.strokeStyle = `#ffff${colorComponent}`;
+      frame.context.lineWidth = 3;
+      frame.context.beginPath();
+      frame.context.arc(SIZE / 2, SIZE / 2, this.radius, 0, Math.PI * 2);
+      frame.context.stroke();
+    }
+
+    // TODO: Draw previous frames ghosted.
+    for (let i = 1; i < 5; i++) {
+      let ghostFrameIndex = this.currentFrame - i;
+      if (ghostFrameIndex < 0) {
+        ghostFrameIndex = this.bombFrames.length + ghostFrameIndex;
+      }
+      let ghostFrame = this.bombFrames[ghostFrameIndex];
+      frame.copy(ghostFrame, 0, 0, SIZE, SIZE, 0, 0, SIZE, SIZE, 0, 0, 0, 1, 1, 0.45 / i);
+    }
+    this.currentFrame += 1;
+    if (this.currentFrame >= this.bombFrames.length) {
+      this.currentFrame = 0;
+    }
+
+    this.radius += this.radiusDelta;
+    this.radiusDelta -= 0.2;
+    this.radiusDelta = Math.max(0.1, this.radiusDelta);
+
+    this.game.context.drawImage(frame.canvas, this.x - SIZE / 2, this.y - SIZE / 2);
   }
 }
