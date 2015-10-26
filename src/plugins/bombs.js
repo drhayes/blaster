@@ -26,6 +26,7 @@ export default class Bombs {
       }
       this.bombFrames.push(frame);
     }
+    this.angleForMove = new Phaser.Point();
   }
 
   boom(x, y) {
@@ -39,7 +40,14 @@ export default class Bombs {
     // If enemy within danger zone, insta-death.
     let distance = Math.min(16 + this.currentFrame, 150);
     if (enemy.position.distance(this) < distance) {
-      enemy.damage(100);
+      enemy.damage(1);
+      enemy.stun();
+      // Push enemy back.
+      this.angleForMove.set(this.x - enemy.x, this.y - enemy.y)
+        .normalize()
+        .rotate(0, 0, 180, true)
+        .multiply(20, 20);
+      enemy.body.velocity.add(this.angleForMove.x, this.angleForMove.y);
     }
   }
 

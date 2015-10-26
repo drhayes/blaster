@@ -1,5 +1,3 @@
-'use strict';
-
 import Bullet from '../sprites/bullet';
 import EnforcerBullet from '../sprites/enforcerBullet';
 import Spear from '../sprites/spear';

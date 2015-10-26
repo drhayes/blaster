@@ -1,5 +1,3 @@
-'use strict';
-
 const NUM_EXPLOSIONS = 100;
 const EXPLOSION_LIFETIME_MS = 1000;
 const SOUND_DELAY = 60;

@@ -1,5 +1,3 @@
-'use strict';
-
 import enableBehaviors from '../behaviors/enableBehaviors';
 import TiltMove from '../behaviors/tiltMove';
 import PlayerMove from '../behaviors/playerMove';
