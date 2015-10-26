@@ -1,5 +1,5 @@
 const NUM_FRAMES = 200;
-const SIZE = 400;
+const SIZE = 600;
 
 export default class Bombs {
   constructor(game) {
@@ -11,13 +11,17 @@ export default class Bombs {
     this.booming = false;
     this.bombFrames = [];
     // Generate shockwave frames.
-    let k = 0;
+    let radius = 0;
+    let radiusDelta = 10;
     for (let i = 0; i < NUM_FRAMES; i++) {
       let frame = this.game.make.bitmapData(SIZE, SIZE);
       if (i < NUM_FRAMES / 2) {
+        radius += radiusDelta;
+        radiusDelta -= 0.2;
+        radiusDelta = Math.max(.1, radiusDelta);
         frame.context.strokeStyle = '#ffff00';
         frame.context.beginPath();
-        frame.context.arc(SIZE / 2, SIZE / 2, 16 + i, 0, Math.PI * 2);
+        frame.context.arc(SIZE / 2, SIZE / 2, radius, 0, Math.PI * 2);
         frame.context.stroke();
       }
       for (let j = i - 1; j > i - 5; j--) {
@@ -26,6 +30,7 @@ export default class Bombs {
       }
       this.bombFrames.push(frame);
     }
+    this.blastRadius = radius;
     this.angleForMove = new Phaser.Point();
   }
 
@@ -38,23 +43,27 @@ export default class Bombs {
 
   bombEnemy(enemy, thing) {
     // If enemy within danger zone, insta-death.
-    let distance = Math.min(16 + this.currentFrame, 150);
-    if (enemy.position.distance(this) < distance) {
+    let enemyDistance = enemy.position.distance(this);
+    if (enemyDistance < this.blastRadius) {
       enemy.damage(1);
-      enemy.stun();
+      if (enemy.stun) {
+        enemy.stun();
+      }
+    }
+    if (enemyDistance < this.blastRadius) {
+      let knockback = 5000 / enemyDistance;
       // Push enemy back.
       this.angleForMove.set(this.x - enemy.x, this.y - enemy.y)
         .normalize()
         .rotate(0, 0, 180, true)
-        .multiply(20, 20);
+        .multiply(knockback, knockback);
       enemy.body.velocity.add(this.angleForMove.x, this.angleForMove.y);
     }
   }
 
   update() {
     // TODO: Cooldown!
-    // TODO: Block bullets!
-    // TODO: Shove enemies!
+    // TODO: Block bullets?
     if (this.booming && this.currentFrame < NUM_FRAMES / 2) {
       this.game.enemiesGroup.forEach(this.bombEnemy, this, true);
     }

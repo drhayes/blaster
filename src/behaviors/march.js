@@ -18,7 +18,7 @@ export default class March extends Behavior {
   }
 
   update(entity) {
-    if (!entity.alive) {
+    if (!entity.alive || entity.stunned) {
       return;
     }
     let player = entity.game.player;
