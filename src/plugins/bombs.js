@@ -20,6 +20,9 @@ export default class Bombs {
   }
 
   boom(x, y) {
+    if (this.booming) {
+      return;
+    }
     this.bombSound.play();
     this.booming = true;
     this.x = x;
@@ -50,10 +53,7 @@ export default class Bombs {
   }
 
   update() {
-    // TODO: Cooldown!
-    // TODO: Block bullets?
     // TODO: Stop spawning enemies from being stunned.
-    // TODO: Maybe bomb charges up over time?
     if (this.booming) {
       this.game.enemiesGroup.forEach(this.bombEnemy, this, true);
       if (this.radius > BLAST_RADIUS) {
