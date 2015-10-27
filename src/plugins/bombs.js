@@ -9,6 +9,7 @@ export default class Bombs {
     this.game = game;
     game.bombs = this;
 
+    this.bombsImage = game.add.tileSprite(800, 2, 32, 32, 'player', 8);
     this.count = 1;
     this.bombSound = this.game.add.audio('bomb');
     this.bombEmptySound = this.game.add.audio('bombEmpty');
@@ -21,6 +22,12 @@ export default class Bombs {
       this.bombFrames.push(frame);
     }
     this.angleForMove = new Phaser.Point();
+    this.updateBombsImage();
+    this.game.world.bringToTop(this.bombsImage);
+  }
+
+  updateBombsImage() {
+    this.bombsImage.width = this.count * 16;
   }
 
   boom(x, y) {
@@ -40,6 +47,7 @@ export default class Bombs {
     this.radius = 0;
     this.radiusDelta = 10;
     this.bombFrames.forEach((frame) => { frame.cls(); });
+    this.updateBombsImage();
   }
 
   bombEnemy(enemy, thing) {

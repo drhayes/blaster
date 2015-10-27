@@ -37,6 +37,7 @@ export default class Score {
     }
     if (this.current % EXTRA_BOMB > (this.current + thing.score) % EXTRA_BOMB) {
       this.game.bombs.count++;
+      this.game.bombs.updateBombsImage();
       this.extraBombSound.play();
     }
     let score = this.scorePool.getFirstExists(false);
