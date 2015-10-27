@@ -1,3 +1,5 @@
+import tracking from '../tracking';
+
 const NUM_FRAMES = 200;
 const SIZE = 600;
 const BLAST_RADIUS = 260;
@@ -25,6 +27,7 @@ export default class Bombs {
     if (this.booming || !this.game.waves.loaded) {
       return;
     }
+    tracking.bomb(this.game.waves.current, this.game.lives.lives, this.count);
     if (this.count <= 0) {
       this.bombEmptySound.play();
       return;

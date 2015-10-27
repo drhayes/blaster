@@ -38,10 +38,11 @@ var tracking = {
     });
   },
 
-  bomb(wave, livesLeft) {
+  bomb(wave, livesLeft, bombsLeft) {
     mixpanel.track('Bomb', {
       wave,
-      livesLeft
+      livesLeft,
+      bombsLeft
     });
   }
 };
