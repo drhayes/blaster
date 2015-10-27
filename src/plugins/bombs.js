@@ -20,7 +20,7 @@ export default class Bombs {
   }
 
   boom(x, y) {
-    if (this.booming) {
+    if (this.booming || !this.game.waves.loaded) {
       return;
     }
     this.bombSound.play();
@@ -53,12 +53,14 @@ export default class Bombs {
   }
 
   update() {
-    // TODO: Stop spawning enemies from being stunned.
-    if (this.booming) {
+    if (this.booming && this.game.waves.loaded) {
       this.game.enemiesGroup.forEach(this.bombEnemy, this, true);
       if (this.radius > BLAST_RADIUS) {
         this.booming = false;
       }
+    }
+    if (!this.game.waves.loaded) {
+      this.booming = false;
     }
   }
 
