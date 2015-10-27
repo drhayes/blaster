@@ -51,6 +51,7 @@ export default class Bombs {
     // TODO: Cooldown!
     // TODO: Block bullets?
     // TODO: Stop spawning enemies from being stunned.
+    // TODO: Maybe bomb charges up over time?
     if (this.booming) {
       this.game.enemiesGroup.forEach(this.bombEnemy, this, true);
       if (this.radius > BLAST_RADIUS) {

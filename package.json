@@ -8,7 +8,8 @@
     "build": "webpack --progress --colors -p",
     "lint": "eslint src/ --fix",
     "predeploy": "rm -rf dist && mkdir -p dist",
-    "deploy": "npm run build && cp CNAME dist && surge dist/"
+    "deploy": "npm run build && cp CNAME dist && surge dist/",
+    "beta": "npm run build && cp CNAME.beta dist/CNAME && surge dist/"
   },
   "repository": {
     "type": "git",
