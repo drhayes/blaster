@@ -1,5 +1,3 @@
-'use strict';
-
 import BaseIntro from './baseIntro';
 import tracking from '../tracking';
 import keyConfig, { KEYS, save as saveKeys, reset as resetKeys } from '../keyConfig';

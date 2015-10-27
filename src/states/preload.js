@@ -1,5 +1,3 @@
-'use strict';
-
 import tracking from '../tracking';
 
 export default class Preload extends Phaser.State {

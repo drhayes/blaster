@@ -1,6 +1,3 @@
-'use strict';
-
-// var fs = require('fs');
 import enableBehaviors from '../behaviors/enableBehaviors';
 
 export default class Enemy extends Phaser.Sprite {
@@ -12,9 +9,6 @@ export default class Enemy extends Phaser.Sprite {
     this.body.collideWorldBounds = true;
     this.tint = game.tinting.currentTint;
     this.knockback = 0.5;
-
-    // let glow = new Phaser.Filter(game, null, fs.readFileSync(__dirname + '/../shaders/glow2.frag', 'utf8'));
-    // this.filters = [glow];
   }
 
   damage(amount) {

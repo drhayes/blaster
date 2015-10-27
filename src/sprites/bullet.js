@@ -1,5 +1,3 @@
-'use strict';
-
 const BULLET_LIFETIME_MS = 1000;
 const BULLET_MAIN_VELOCITY = 1000;
 

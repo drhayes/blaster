@@ -1,5 +1,3 @@
-'use strict';
-
 const SPAWN_DURATION_MS = 3000;
 
 export default class Spawn {

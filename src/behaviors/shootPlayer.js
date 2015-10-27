@@ -1,5 +1,3 @@
-'use strict';
-
 import Behavior from './behavior';
 
 const SHOOT_TIMER_MS = 2000;

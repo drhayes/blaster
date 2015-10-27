@@ -1,5 +1,3 @@
-'use strict';
-
 import BlasterButton from '../sprites/blasterButton';
 
 export default class BaseIntro extends Phaser.State {

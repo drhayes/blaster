@@ -1,5 +1,3 @@
-'use strict';
-
 var ls = require('local-storage');
 
 export const KEYS = ['moveUp', 'moveDown', 'moveLeft', 'moveRight',

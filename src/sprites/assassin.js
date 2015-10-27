@@ -1,5 +1,3 @@
-'use strict';
-
 import Enemy from './enemy';
 import KeepYourDistance from '../behaviors/keepYourDistance';
 import FleeOnDamage from '../behaviors/fleeOnDamage';

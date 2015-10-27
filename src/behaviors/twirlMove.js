@@ -1,5 +1,3 @@
-'use strict';
-
 import Behavior from './behavior';
 
 export default class TwirlMove extends Behavior {

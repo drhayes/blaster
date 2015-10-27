@@ -1,5 +1,3 @@
-'use strict';
-
 import Player from '../sprites/player';
 import tracking from '../tracking';
 

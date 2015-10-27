@@ -1,5 +1,3 @@
-'use strict';
-
 import Behavior from './behavior';
 
 const ACCEL = 40;

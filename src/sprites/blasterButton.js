@@ -1,5 +1,3 @@
-'use strict';
-
 export default class BlasterButton extends Phaser.Button {
   constructor(game, x, y, text, callback, callbackContext) {
     super(game, x, y, 'button', callback, callbackContext, 0, 0, 0, 0);

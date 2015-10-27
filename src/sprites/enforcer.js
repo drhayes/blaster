@@ -1,5 +1,3 @@
-'use strict';
-
 import Enemy from './enemy';
 import TwirlMove from '../behaviors/twirlMove';
 import OrbitPlayer from '../behaviors/orbitPlayer';

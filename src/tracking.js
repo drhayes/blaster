@@ -1,13 +1,11 @@
-'use strict';
-
 var tracking = {
   startPreload() {
     mixpanel.track('Start preload');
   },
 
-  finishPreload(totalTime) {
+  finishPreload(totalTimeMS) {
     mixpanel.track('Finish preload', {
-      totalTimeMS: totalTime
+      totalTimeMS
     });
   },
 
@@ -29,14 +27,21 @@ var tracking = {
 
   died(wave, livesLeft) {
     mixpanel.track('Died', {
-      wave: wave,
-      livesLeft: livesLeft
+      wave,
+      livesLeft
     });
   },
 
   newWave(wave) {
     mixpanel.track('New wave', {
-      wave: wave
+      wave
+    });
+  },
+
+  bomb(wave, livesLeft) {
+    mixpanel.track('Bomb', {
+      wave,
+      livesLeft
     });
   }
 };

@@ -1,5 +1,3 @@
-'use strict';
-
 import Enemy from './enemy';
 import HulkMarch from '../behaviors/hulkMarch';
 import FleeCenter from '../behaviors/fleeCenter';

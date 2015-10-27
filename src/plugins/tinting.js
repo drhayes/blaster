@@ -1,5 +1,3 @@
-'use strict';
-
 export default class Tinting {
   constructor(game) {
     this.game = game;

@@ -1,5 +1,3 @@
-'use strict';
-
 export default function enableBehaviors(sprite) {
   sprite.behaviors = [];
   Phaser.Utils.mixinPrototype(sprite, behaviorsProto);

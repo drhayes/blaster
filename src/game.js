@@ -1,5 +1,3 @@
-'use strict';
-
 require('../index.html');
 // Google verification file.
 require('../google140404e41df18dd3.html');

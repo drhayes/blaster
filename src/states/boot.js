@@ -1,5 +1,3 @@
-'use strict';
-
 import { load as loadKeys } from '../keyConfig';
 
 export default class Boot extends Phaser.State {
