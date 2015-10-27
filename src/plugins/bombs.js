@@ -7,7 +7,9 @@ export default class Bombs {
     this.game = game;
     game.bombs = this;
 
+    this.count = 1;
     this.bombSound = this.game.add.audio('bomb');
+    this.bombEmptySound = this.game.add.audio('bombEmpty');
     this.currentFrame = 0;
     this.booming = false;
     // Generate circular queue of shockwave frames.
@@ -23,6 +25,11 @@ export default class Bombs {
     if (this.booming || !this.game.waves.loaded) {
       return;
     }
+    if (this.count <= 0) {
+      this.bombEmptySound.play();
+      return;
+    }
+    this.count -= 1;
     this.bombSound.play();
     this.booming = true;
     this.x = x;
