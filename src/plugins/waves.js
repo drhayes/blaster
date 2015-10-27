@@ -29,7 +29,7 @@ export default class Waves {
 
   update() {
     let player = this.game.player;
-    if (player) {
+    if (player && this.game.waves.loaded) {
       this.game.physics.arcade.collide(player, this.enemiesGroup, player.onCollide, null, player);
       this.game.physics.arcade.collide(player, this.hulkGroup, player.onCollide, null, player);
     }
