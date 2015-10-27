@@ -21,7 +21,7 @@ export default class BaseIntro extends Phaser.State {
     this.logo = this.game.add.image(this.game.world.centerX, 50, 'blasterLogo');
     this.logo.anchor.setTo(0.5, 0);
     this.logo.tint = 0x4682b4;
-    this.alphaText = this.makeText(this.game.world.centerY * 1/3, 'alpha', 24);
+    this.alphaText = this.makeText(this.game.world.centerY * 1/3, 'beta', 24);
   }
 
   makeButton(x, y, text, cb) {

@@ -32,8 +32,10 @@ export default class MainMenu extends BaseIntro {
     let shootLabels = shootKeys.map((key) => keycode.names[keyConfig[key]].toUpperCase()).join(', ');
     this.makeText(this.game.world.centerY * 1.6, `${shootLabels} to shoot.`);
 
+    this.makeText(this.game.world.centerY * 1.7, `${keycode.names[keyConfig.bomb].toUpperCase()} for bomb.`);
 
-    this.pressSpace = this.makeText(this.game.world.centerY * 1.8, 'Press Space For New Game');
+
+    this.pressSpace = this.makeText(this.game.world.centerY * 1.9, 'Press Space For New Game');
 
     tracking.mainMenu();
   }

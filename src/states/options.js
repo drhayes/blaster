@@ -12,6 +12,7 @@ const POSITIONS = [
   { x: 1.5, y: 1.2 },
   { x: 1.2, y: 1 },
   { x: 1.8, y: 1 },
+  { x: 1, y: 1.3 }
 ];
 
 export default class Options extends BaseIntro {
@@ -22,6 +23,7 @@ export default class Options extends BaseIntro {
     move.x = this.game.world.centerX * 0.5;
     let shoot = this.makeText(this.game.world.centerY, 'Shoot');
     shoot.x = this.game.world.centerX * 1.5;
+    let bomb = this.makeText(this.game.world.centerY * 1.45, 'Bomb');
 
     KEYS.forEach((key, i) => {
       let pos = POSITIONS[i];
@@ -31,10 +33,10 @@ export default class Options extends BaseIntro {
       });
     });
 
-    this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.4, 'Main Menu', () => {
+    this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.7, 'Main Menu', () => {
       this.game.state.start('mainMenu');
     });
-    this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.6, 'Reset Defaults', () => {
+    this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.9, 'Reset Defaults', () => {
       resetKeys();
       this.updateButtonLabels();
     });
