@@ -7,6 +7,7 @@ export default class Bombs {
     this.game = game;
     game.bombs = this;
 
+    this.bombSound = this.game.add.audio('bomb');
     this.currentFrame = 0;
     this.booming = false;
     // Generate circular queue of shockwave frames.
@@ -19,6 +20,7 @@ export default class Bombs {
   }
 
   boom(x, y) {
+    this.bombSound.play();
     this.booming = true;
     this.x = x;
     this.y = y;
