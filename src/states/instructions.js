@@ -1,5 +1,3 @@
-'use strict';
-
 import keycode from 'keycode';
 
 import BaseIntro from './baseIntro';
@@ -21,6 +19,7 @@ export default class Instructions extends BaseIntro {
     this.makeText(this.game.world.centerY * 0.7, `${shootLabels} to shoot.`);
 
     this.makeText(this.game.world.centerY * 0.8, 'Extra life every 10,000.');
+    this.makeText(this.game.world.centerY * 0.8, 'Extra bomb every 40,000.');
 
     this.makeButton(this.game.world.centerX, this.game.world.centerY * 1.4, 'Main Menu', () => {
       this.game.state.start('mainMenu');

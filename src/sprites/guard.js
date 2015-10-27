@@ -1,5 +1,3 @@
-'use strict';
-
 import Enemy from './enemy';
 import TiltMove from '../behaviors/tiltMove';
 import March from '../behaviors/march';

@@ -1,5 +1,3 @@
-'use strict';
-
 import Guard from '../sprites/guard';
 import Enforcer from '../sprites/enforcer';
 import Assassin from '../sprites/assassin';

@@ -1,6 +1,5 @@
-'use strict';
-
 const EXTRA_LIFE = 10 * 1000;
+const EXTRA_BOMB = 40 * 1000;
 const NUM_SCORES = 10;
 
 export default class Score {
@@ -14,6 +13,7 @@ export default class Score {
     this.game.world.bringToTop(this.scoreText);
     this.updateScore();
     this.extraLifeSound = this.game.add.audio('extraLife');
+    this.extraBombSound = this.game.add.audio('extraBomb');
 
     this.scorePool = this.game.add.group();
     for (let i = 0; i < NUM_SCORES; i++) {
@@ -34,6 +34,10 @@ export default class Score {
       this.game.lives.lives++;
       this.game.lives.updateLivesImage();
       this.extraLifeSound.play();
+    }
+    if (this.current % EXTRA_BOMB > (this.current + thing.score) % EXTRA_BOMB) {
+      this.game.bombs.count++;
+      this.extraBombSound.play();
     }
     let score = this.scorePool.getFirstExists(false);
     if (score) {
