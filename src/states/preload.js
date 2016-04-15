@@ -17,7 +17,9 @@ export default class Preload extends Phaser.State {
     this.game.load.image('button', require('../../media/images/button.png'), 240, 80);
     this.game.load.image('phaserLogo', require('../../media/images/Phaser-Logo-Small.png'), 382, 331);
     this.game.load.image('drhayesLogo', require('../../media/images/drhayes.png'), 552, 586);
-
+    this.game.load.image('blueenemy', require('../../media/images/blueenemy.png'), 32,32);
+    this.game.load.image('blueenemybeam', require('../../media/images/blueenemybeam.png'), 32,32); 
+    
     this.game.load.audio('shoot', require('../../media/sounds/shoot.mp3'));
     this.game.load.audio('smallBoom', require('../../media/sounds/smallBoom.mp3'));
     this.game.load.audio('mediumBoom', require('../../media/sounds/mediumBoom.mp3'));
