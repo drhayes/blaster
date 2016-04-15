@@ -75,6 +75,16 @@ export default class Waves {
         this.loaded = true;
       });
     }
+    
+    for (let i = 0; i < wave.r; i++) {
+      let ranger = new Ranger(this.game, this.game.world.randomX, this.game.world.randomY);
+      this.enemiesGroup.add(ranger);
+      this.game.spawn.startSpawn(ranger, () => {
+        this.loading = false;
+        this.loaded = true;
+      });
+    }
+    
     for (let i = 0; i < wave.a; i++) {
       let assassin = new Assassin(this.game, this.game.world.randomX, this.game.world.randomY);
       this.enemiesGroup.add(assassin);
