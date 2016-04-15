@@ -17,6 +17,7 @@ export default class Shooting {
 
     this.playerBullets = this.game.add.group();
     this.enforcerBullets = this.game.add.group();
+    this.rangerBullets = this.game.add.group(); 
     this.spears = this.game.add.group();
     for (let x = 0; x < NUM_BULLETS; x++) {
       let bullet = new Bullet(this.game, 0, 0);
@@ -27,7 +28,11 @@ export default class Shooting {
       enforcerBullet.alive = enforcerBullet.exists = enforcerBullet.visible = false;
       this.enforcerBullets.add(enforcerBullet);
 
-      let spear = new Spear(this.game, 0, 0);
+     let rangerBullet = new rangerBullet(this.game, 0, 0);
+      rangerBullet.alive = rangerBullet.exists = rangerBullet.visible = false;
+      this.rangerBullets.add(rangerBullet); 
+     
+     let spear = new Spear(this.game, 0, 0);
       spear.alive = spear.exists = spear.visible = false;
       this.spears.add(spear);
     }
@@ -35,9 +40,11 @@ export default class Shooting {
     this.game.waves.onTransition.add(() => {
       this.playerBullets.callAll('kill');
       this.enforcerBullets.callAll('kill');
+      this.rangerBullets.callAll('kill');  
       this.spears.callAll('kill');
       // Set tint on bullets and spears.
       this.enforcerBullets.setAll('tint', this.game.tinting.currentTint);
+      this.rangerBullets.setAll('tint', this.game.tinting.currentTint);
       this.spears.setAll('tint', this.game.tinting.currentTint);
     });
   }
@@ -63,6 +70,15 @@ export default class Shooting {
     }
   }
 
+  rangerShoot(sx, sy, vx, vy) {
+    let bullet = this.rangerBullets.getFirstExists(false);
+    if (bullet) {
+      bullet.reset(sx, sy);
+      bullet.fire(vx, vy);
+      //this.enforcerShootSound.play();
+    }
+  }  
+  
   spearWarn() {
     this.spearWarnSound.play();
   }
@@ -86,6 +102,13 @@ export default class Shooting {
       this.game.physics.arcade.overlap(player, this.enforcerBullets, this.onEnforcerBullet, null, this);
       this.game.physics.arcade.overlap(player, this.spears, this.onEnforcerBullet, null, this);
     }
+  }
+  
+      let player = this.game.player;
+    if (player) {
+      this.game.physics.arcade.overlap(player, this.rangerBullets, this.onRangerBullet, null, this);
+      this.game.physics.arcade.overlap(player, this.spears, this.onRangerBullet, null, this);
+    }  
   }
 
   onProcess(enemy) {
