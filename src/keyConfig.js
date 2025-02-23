@@ -1,5 +1,3 @@
-var ls = require('local-storage');
-
 export const KEYS = ['moveUp', 'moveDown', 'moveLeft', 'moveRight',
   'shootUp', 'shootDown', 'shootLeft', 'shootRight', 'bomb'];
 
@@ -20,12 +18,19 @@ let keyConfig = {
 // Dupe as defaults for easy restting.
 keyConfig.defaults = Object.assign({}, keyConfig);
 
-export function save () {
-  ls('blasterKeys', keyConfig);
+export function save() {
+  localStorage.setItem('blasterKeys', JSON.stringify(keyConfig));
 };
 
-export function load () {
-  let keys = ls('blasterKeys');
+export function load() {
+  let keysString = localStorage.getItem('blasterKeys');
+  let keys;
+  try {
+    keys = JSON.parse(keysString);
+  }
+  catch (error) {
+    console.error('Error parsing keys from localStorage', error);
+  }
   if (!keys) {
     return;
   }
@@ -39,7 +44,7 @@ export function load () {
   });
 };
 
-export function reset () {
+export function reset() {
   KEYS.forEach((key) => {
     keyConfig[key] = keyConfig.defaults[key];
   });

@@ -1,16 +1,10 @@
-require('../index.html');
-// Google verification file.
-require('../google140404e41df18dd3.html');
-// Phaser itself, duh.
-require('../vendor/phaser.min.js');
-
-var Boot = require('./states/boot');
-var Preload = require('./states/preload');
-var Intro = require('./states/intro');
-var MainMenu = require('./states/mainMenu');
-var Instructions = require('./states/instructions');
-var Options = require('./states/options');
-var Main = require('./states/main');
+import Boot from './states/boot';
+import Preload from './states/preload';
+import Intro from './states/intro';
+import MainMenu from './states/mainMenu';
+import Instructions from './states/instructions';
+import Options from './states/options';
+import Main from './states/main';
 
 var game = window.game = new Phaser.Game({
   width: 1280,

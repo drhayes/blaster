@@ -4,7 +4,7 @@ import Assassin from '../sprites/assassin';
 import Hulk from '../sprites/hulk';
 import tracking from '../tracking';
 
-let wavesData = require('../data/wavesData.yaml');
+let wavesData = require('../data/wavesData.json');
 console.log('How many waves? ', wavesData.length);
 
 export default class Waves {
